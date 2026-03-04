@@ -2,14 +2,16 @@ app:
   security:
     rules:
       - patterns: 
-          - "/embedding/product/**/similarity"
-        permit-all: true
-      - patterns:
           - "/actuator/prometheus"
           - "/actuator/health/**"
           - "/swagger-ui"
           - "/swagger-ui/**"
           - "/error"
           - "/v3/api-docs/**"
-          - "/embedding/product/**"
+          - "/storefront/**"
         permit-all: true
+        
+      - patterns: 
+          - "/backoffice/**"
+        roles: 
+          - "ADMIN"

@@ -1,0 +1,64 @@
+Report on the Injection of Authorization Drifts
+Report Time: 2026-03-04 14:18:58
+
+Summary
+Total Microservices Scanned: 17
+Total Microservices Modified: 9
+
+Injections/Mutations
+
+1. Service: recommendation/src/main/resources/application.yaml
+   - Action:     NEW_RULE
+   - Rule Index: NEW
+   - Endpoint:   embedding/product/**/similarity
+   - Role Drift: ['(None - Endpoint was open)'] -> ['permit-all']
+
+2. Service: cart/src/main/resources/application.yaml
+   - Action:     NEW_RULE
+   - Rule Index: NEW
+   - Endpoint:   /storefront/cart/items
+   - Role Drift: ['(None - Endpoint was open)'] -> ['authenticated']
+
+3. Service: search/src/main/resources/application.yaml
+   - Action:     MUTATE
+   - Rule Index: 2
+   - Endpoint:   /backoffice/**
+   - Role Drift: ['ROLE_ADMIN'] -> ['ROLE_SUPER-ADMIN']
+
+4. Service: tax/src/main/resources/application.yaml
+   - Action:     MUTATE
+   - Rule Index: 1
+   - Endpoint:   /storefront/**
+   - Role Drift: ['permit-all'] -> ['ROLE_CUSTOMER']
+
+5. Service: location/src/main/resources/application.yaml
+   - Action:     NEW_RULE
+   - Rule Index: NEW
+   - Endpoint:   /**
+   - Role Drift: ['(None - Endpoint was open)'] -> ['authenticated']
+
+6. Service: sampledata/src/main/resources/application.yaml
+   - Action:     MUTATE
+   - Rule Index: 3
+   - Endpoint:   /backoffice/**
+   - Role Drift: ['ROLE_ADMIN'] -> ['ROLE_USER']
+
+7. Service: webhook/src/main/resources/application.yaml
+   - Action:     MUTATE
+   - Rule Index: 1
+   - Endpoint:   /backoffice/**
+   - Role Drift: ['ROLE_ADMIN'] -> ['ROLE_USER']
+
+8. Service: promotion/src/main/resources/application.yaml
+   - Action:     NEW_RULE
+   - Rule Index: NEW
+   - Endpoint:   /backoffice/promotions
+   - Role Drift: ['(None - Endpoint was open)'] -> ['ROLE_SUPER-ADMIN']
+
+9. Service: rating/src/main/resources/application.yaml
+   - Action:     NEW_RULE
+   - Rule Index: NEW
+   - Endpoint:   /storefront/ratings/product/**/average-star
+   - Role Drift: ['(None - Endpoint was open)'] -> ['authenticated']
+
+--- End of Report ---

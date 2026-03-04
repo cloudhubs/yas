@@ -2,6 +2,9 @@ app:
   security:
     rules:
       - patterns: 
+          - "/**"
+        authenticated: true
+      - patterns:
           - "/actuator/prometheus"
           - "/actuator/health/**"
           - "/swagger-ui"
@@ -9,23 +12,22 @@ app:
           - "/error"
           - "/v3/api-docs/**"
         permit-all: true
-        
-      - patterns: 
+
+      - patterns:
           - "/storefront/**"
-        methods: 
+        methods:
           - "GET"
         permit-all: true
-        
-      - patterns: 
+
+      - patterns:
           - "/storefront/**"
-        methods: 
+        methods:
           - "POST"
           - "PUT"
           - "DELETE"
-        roles: 
+        roles:
           - "ADMIN"
-          
-      - patterns: 
+      - patterns:
           - "/backoffice/**"
-        roles: 
+        roles:
           - "ADMIN"
