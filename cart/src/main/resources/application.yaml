@@ -1,26 +1,24 @@
 app:
   security:
     rules:
-      - patterns: 
+      - patterns:
           - "/actuator/prometheus"
           - "/actuator/health/**"
           - "/swagger-ui"
           - "/swagger-ui/**"
           - "/error"
           - "/v3/api-docs/**"
-        permit-all: true
-        
-      - patterns: 
+        authenticated: true
+      - patterns:
           - "/storefront/carts"
           - "/storefront/carts/**"
-        roles: 
+        roles:
           - "CUSTOMER"
-          
-      - patterns: 
+      - patterns:
           - "/storefront/**"
         permit-all: true
-        
-      - patterns: 
+
+      - patterns:
           - "/backoffice/**"
-        roles: 
-          - "ADMIN"
+        roles:
+          - "CUSTOMER"
