@@ -1,0 +1,82 @@
+Report on the Injection of Authorization Drifts
+Report Time: 2026-03-04 14:01:37
+
+Summary
+Total Microservices Scanned: 17
+Total Microservices Modified: 12
+
+Injections/Mutations
+
+1. Service: tax/src/main/resources/application.yaml
+   - Action:     MUTATE
+   - Rule Index: 2
+   - Endpoint:   /backoffice/**
+   - Role Drift: ['ROLE_ADMIN'] -> ['ROLE_SUPER-ADMIN']
+
+2. Service: payment/src/main/resources/application.yaml
+   - Action:     MUTATE
+   - Rule Index: 0
+   - Endpoint:   /actuator/prometheus -> /actuator/prometheus/**
+   - Role Drift: ['permit-all'] -> ['permit-all']
+
+3. Service: location/src/main/resources/application.yaml
+   - Action:     NEW_RULE
+   - Rule Index: NEW
+   - Endpoint:   /storefront/addresses/**
+   - Role Drift: ['(None - Endpoint was open)'] -> ['ROLE_CUSTOMER']
+
+4. Service: cart/src/main/resources/application.yaml
+   - Action:     MUTATE
+   - Rule Index: 3
+   - Endpoint:   /backoffice/** -> /backoffice/*
+   - Role Drift: ['ROLE_ADMIN'] -> ['ROLE_ADMIN']
+
+5. Service: search/src/main/resources/application.yaml
+   - Action:     NEW_RULE
+   - Rule Index: NEW
+   - Endpoint:   /storefront/search_suggest
+   - Role Drift: ['(None - Endpoint was open)'] -> ['ROLE_CUSTOMER']
+
+6. Service: webhook/src/main/resources/application.yaml
+   - Action:     NEW_RULE
+   - Rule Index: NEW
+   - Endpoint:   /paging
+   - Role Drift: ['(None - Endpoint was open)'] -> ['ROLE_CUSTOMER']
+
+7. Service: inventory/src/main/resources/application.yaml
+   - Action:     NEW_RULE
+   - Rule Index: NEW
+   - Endpoint:   /**
+   - Role Drift: ['(None - Endpoint was open)'] -> ['authenticated']
+
+8. Service: backoffice-bff/src/main/resources/application.yaml
+   - Action:     MUTATE
+   - Rule Index: 0
+   - Endpoint:   /api/admin/**
+   - Role Drift: ['ROLE_ADMIN', 'ROLE_SUPER_ADMIN'] -> ['ROLE_CUSTOMER']
+
+9. Service: sampledata/src/main/resources/application.yaml
+   - Action:     NEW_RULE
+   - Rule Index: NEW
+   - Endpoint:   /storefront/sampledata
+   - Role Drift: ['(None - Endpoint was open)'] -> ['permit-all']
+
+10. Service: promotion/src/main/resources/application.yaml
+   - Action:     NEW_RULE
+   - Rule Index: NEW
+   - Endpoint:   /backoffice/promotions/**
+   - Role Drift: ['(None - Endpoint was open)'] -> ['ROLE_SUPER-ADMIN']
+
+11. Service: media/src/main/resources/application.yaml
+   - Action:     MUTATE
+   - Rule Index: 1
+   - Endpoint:   /medias/**
+   - Role Drift: ['permit-all'] -> ['ROLE_CUSTOMER']
+
+12. Service: product/src/main/resources/application.yaml
+   - Action:     NEW_RULE
+   - Rule Index: NEW
+   - Endpoint:   /backoffice/categories/by-ids
+   - Role Drift: ['(None - Endpoint was open)'] -> ['ROLE_SUPER-ADMIN']
+
+--- End of Report ---

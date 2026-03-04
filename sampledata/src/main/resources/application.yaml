@@ -2,13 +2,15 @@ app:
   security:
     csrf-ignored:
       - "/storefront/sampledata"
-      
     rules:
       - patterns: 
+          - "/storefront/sampledata"
+        permit-all: true
+      - patterns:
           - "/sampledata/**"
         permit-all: true
-        
-      - patterns: 
+
+      - patterns:
           - "/actuator/prometheus"
           - "/actuator/health/**"
           - "/swagger-ui"
@@ -16,12 +18,12 @@ app:
           - "/error"
           - "/v3/api-docs/**"
         permit-all: true
-        
-      - patterns: 
+
+      - patterns:
           - "/storefront/**"
         permit-all: true
-        
-      - patterns: 
+
+      - patterns:
           - "/backoffice/**"
-        roles: 
+        roles:
           - "ADMIN"

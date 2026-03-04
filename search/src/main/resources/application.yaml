@@ -2,6 +2,10 @@ app:
   security:
     rules:
       - patterns: 
+          - "/storefront/search_suggest"
+        roles: 
+          - "CUSTOMER"
+      - patterns:
           - "/actuator/prometheus"
           - "/actuator/health/**"
           - "/swagger-ui"
@@ -9,12 +13,12 @@ app:
           - "/error"
           - "/v3/api-docs/**"
         permit-all: true
-        
-      - patterns: 
+
+      - patterns:
           - "/storefront/**"
         permit-all: true
-        
-      - patterns: 
+
+      - patterns:
           - "/backoffice/**"
-        roles: 
-          - "ADMIN"
+        roles:
+          - "SUPER-ADMIN"

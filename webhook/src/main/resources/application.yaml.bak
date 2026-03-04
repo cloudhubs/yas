@@ -2,23 +2,16 @@ app:
   security:
     rules:
       - patterns: 
-          - "/backoffice/promotions/**"
-        roles: 
-          - "SUPER-ADMIN"
-      - patterns:
           - "/actuator/prometheus"
           - "/actuator/health/**"
           - "/swagger-ui"
           - "/swagger-ui/**"
           - "/error"
           - "/v3/api-docs/**"
-        permit-all: true
-
-      - patterns:
           - "/storefront/**"
         permit-all: true
-
-      - patterns:
+        
+      - patterns: 
           - "/backoffice/**"
-        roles:
+        roles: 
           - "ADMIN"
