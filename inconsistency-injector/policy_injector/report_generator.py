@@ -14,17 +14,16 @@ def generate_report(all_changes, total_files_scanned):
     report_lines.append("\nInjections/Mutations")
 
     for i, change in enumerate(all_changes):
-        report_lines.append(f"\n{i+1}. Service: {change['service_file']}")
-        report_lines.append(f"   - Rule Index: {change['rule_index']}")
-        report_lines.append(f"   - Endpoint:   {change['endpoint_path']}")
-        report_lines.append(f"   - Method:     {change['method']}")
-        report_lines.append(f"   - Role Drift: {change['original_roles']} -> {change['new_roles']}")
+        report_lines.append(f"\n{i+1}. Service: {change.get('service_file', 'Unknown')}")
+        report_lines.append(f"   - Action:     {change.get('action', 'MUTATE')}")
+        report_lines.append(f"   - Rule Index: {change.get('rule_index', 'N/A')}")
+        report_lines.append(f"   - Endpoint:   {change.get('endpoint_path', 'Unknown')}")
+        report_lines.append(f"   - Role Drift: {change.get('original_roles', [])} -> {change.get('new_roles', [])}")
 
     report_lines.append("\n--- End of Report ---")
     
     report_content = "\n".join(report_lines)
     
-    # Save report to a timestamped file
     file_timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
     filename = f"drift_report_{file_timestamp}.txt"
     
