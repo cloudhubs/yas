@@ -1,0 +1,22 @@
+app:
+  security:
+    rules:
+      - patterns: 
+          - "/actuator/prometheus"
+          - "/actuator/health/**"
+          - "/swagger-ui"
+          - "/swagger-ui/**"
+          - "/error"
+          - "/v3/api-docs/**"
+        permit-all: true
+        
+      - patterns: 
+          - "/medias/**"
+        methods: 
+          - "GET"
+        permit-all: true
+        
+      - patterns: 
+          - "/medias"
+        roles: 
+          - "ADMIN"

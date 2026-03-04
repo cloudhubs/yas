@@ -1,0 +1,27 @@
+app:
+  security:
+    csrf-ignored:
+      - "/storefront/sampledata"
+      
+    rules:
+      - patterns: 
+          - "/sampledata/**"
+        permit-all: true
+        
+      - patterns: 
+          - "/actuator/prometheus"
+          - "/actuator/health/**"
+          - "/swagger-ui"
+          - "/swagger-ui/**"
+          - "/error"
+          - "/v3/api-docs/**"
+        permit-all: true
+        
+      - patterns: 
+          - "/storefront/**"
+        permit-all: true
+        
+      - patterns: 
+          - "/backoffice/**"
+        roles: 
+          - "ADMIN"

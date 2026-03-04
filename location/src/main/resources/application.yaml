@@ -1,0 +1,31 @@
+app:
+  security:
+    rules:
+      - patterns: 
+          - "/actuator/prometheus"
+          - "/actuator/health/**"
+          - "/swagger-ui"
+          - "/swagger-ui/**"
+          - "/error"
+          - "/v3/api-docs/**"
+        permit-all: true
+        
+      - patterns: 
+          - "/storefront/**"
+        methods: 
+          - "GET"
+        permit-all: true
+        
+      - patterns: 
+          - "/storefront/**"
+        methods: 
+          - "POST"
+          - "PUT"
+          - "DELETE"
+        roles: 
+          - "ADMIN"
+          
+      - patterns: 
+          - "/backoffice/**"
+        roles: 
+          - "ADMIN"

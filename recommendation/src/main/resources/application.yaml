@@ -1,0 +1,12 @@
+app:
+  security:
+    rules:
+      - patterns: 
+          - "/actuator/prometheus"
+          - "/actuator/health/**"
+          - "/swagger-ui"
+          - "/swagger-ui/**"
+          - "/error"
+          - "/v3/api-docs/**"
+          - "/embedding/product/**" 
+        permit-all: true

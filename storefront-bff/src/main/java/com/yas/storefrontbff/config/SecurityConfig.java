@@ -1,10 +1,8 @@
 package com.yas.storefrontbff.config;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
+import org.springframework.http.HttpMethod;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -33,19 +31,44 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
+    public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http, SecurityProperties securityProps) {
+        
+        http.authorizeExchange(auth -> {
+            for (SecurityProperties.Rule rule : securityProps.getRules()) {
+                String[] patternsArray = rule.getPatterns().toArray(new String[0]);
+                
+                if (rule.getMethods() != null && !rule.getMethods().isEmpty()) {
+                    for (String method : rule.getMethods()) {
+                        HttpMethod httpMethod = HttpMethod.valueOf(method.toUpperCase());
+                        if (rule.isPermitAll()) {
+                            auth.pathMatchers(httpMethod, patternsArray).permitAll();
+                        } else if (rule.isAuthenticated()) {
+                            auth.pathMatchers(httpMethod, patternsArray).authenticated();
+                        } else if (!rule.getRoles().isEmpty()) {
+                            String[] rolesArray = rule.getRoles().toArray(new String[0]);
+                            auth.pathMatchers(httpMethod, patternsArray).hasAnyRole(rolesArray);
+                        }
+                    }
+                } else {
+                    if (rule.isPermitAll()) {
+                        auth.pathMatchers(patternsArray).permitAll();
+                    } else if (rule.isAuthenticated()) {
+                        auth.pathMatchers(patternsArray).authenticated();
+                    } else if (!rule.getRoles().isEmpty()) {
+                        String[] rolesArray = rule.getRoles().toArray(new String[0]);
+                        auth.pathMatchers(patternsArray).hasAnyRole(rolesArray);
+                    }
+                }
+            }
+            auth.anyExchange().permitAll();
+        });
+
         return http
-            .authorizeExchange(auth -> auth
-                .pathMatchers("/profile/**").authenticated()
-                .pathMatchers("/address/**").authenticated()
-                .anyExchange().permitAll())
             .oauth2Login(Customizer.withDefaults())
             .httpBasic(ServerHttpSecurity.HttpBasicSpec::disable)
             .formLogin(ServerHttpSecurity.FormLoginSpec::disable)
             .csrf(ServerHttpSecurity.CsrfSpec::disable)
-            .logout(logout -> logout
-                .logoutSuccessHandler(oidcLogoutSuccessHandler())
-            )
+            .logout(logout -> logout.logoutSuccessHandler(oidcLogoutSuccessHandler()))
             .build();
     }
 
@@ -53,14 +76,16 @@ public class SecurityConfig {
         OidcClientInitiatedServerLogoutSuccessHandler oidcLogoutSuccessHandler =
             new OidcClientInitiatedServerLogoutSuccessHandler(this.clientRegistrationRepository);
         oidcLogoutSuccessHandler.setPostLogoutRedirectUri("{baseUrl}");
-
         return oidcLogoutSuccessHandler;
     }
 
     @Bean
+    @SuppressWarnings("unchecked")
     public GrantedAuthoritiesMapper userAuthoritiesMapperForKeycloak() {
         return authorities -> {
             Set<GrantedAuthority> mappedAuthorities = new HashSet<>();
+            if (authorities.isEmpty()) return mappedAuthorities;
+            
             var authority = authorities.iterator().next();
             boolean isOidc = authority instanceof OidcUserAuthority;
 
@@ -73,7 +98,7 @@ public class SecurityConfig {
                     var roles = (Collection<String>) realmAccess.get(ROLES_CLAIM);
                     mappedAuthorities.addAll(generateAuthoritiesFromClaim(roles));
                 }
-            } else {
+            } else if (authority instanceof OAuth2UserAuthority) {
                 var oauth2UserAuthority = (OAuth2UserAuthority) authority;
                 Map<String, Object> userAttributes = oauth2UserAuthority.getAttributes();
 
@@ -89,6 +114,7 @@ public class SecurityConfig {
     }
 
     Collection<GrantedAuthority> generateAuthoritiesFromClaim(Collection<String> roles) {
+        if (roles == null) return Collections.emptyList(); 
         return roles.stream()
             .map(role -> new SimpleGrantedAuthority("ROLE_" + role))
             .collect(Collectors.toList());

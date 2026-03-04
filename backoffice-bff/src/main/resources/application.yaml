@@ -41,3 +41,20 @@ management:
 logging:
   pattern:
     level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
+
+security:
+    permit-all:
+      - "/health"
+      - "/actuator/prometheus"
+      - "/actuator/health/**"
+    path-roles:
+      - path: "/api/admin/**"
+        roles: 
+          - "ADMIN"
+          - "SUPER_ADMIN"
+      - path: "/api/user/**"
+        roles: 
+          - "USER"
+          - "ADMIN"
+    any-exchange-roles:
+      - "ADMIN"

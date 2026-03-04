@@ -33,17 +33,41 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
+    public SecurityWebFilterChain springSecurityFilterChain(
+            ServerHttpSecurity http, 
+            SecurityProperties securityProps) {
+        
         return http
-            .authorizeExchange(auth -> auth
-                .pathMatchers("/health", "/actuator/prometheus", "/actuator/health/**").permitAll()
-                .anyExchange().hasAnyRole("ADMIN"))
+            .authorizeExchange(auth -> {
+                
+                // 1. Map permitAll routes
+                if (!securityProps.getPermitAll().isEmpty()) {
+                    auth.pathMatchers(securityProps.getPermitAll().toArray(new String[0])).permitAll();
+                }
+
+                // 2. Map dynamic path-to-roles
+                for (SecurityProperties.PathRole pr : securityProps.getPathRoles()) {
+                    if (pr.getPath() != null && !pr.getRoles().isEmpty()) {
+                        auth.pathMatchers(pr.getPath())
+                            .hasAnyRole(pr.getRoles().toArray(new String[0]));
+                    }
+                }
+
+                // 3. Map anyExchange fallback
+                if (!securityProps.getAnyExchangeRoles().isEmpty()) {
+                    auth.anyExchange()
+                        .hasAnyRole(securityProps.getAnyExchangeRoles().toArray(new String[0]));
+                } else {
+                    // Safe default if missing from YAML
+                    auth.anyExchange().authenticated(); 
+                }
+            })
             .oauth2Login(Customizer.withDefaults())
             .httpBasic(ServerHttpSecurity.HttpBasicSpec::disable)
             .formLogin(ServerHttpSecurity.FormLoginSpec::disable)
             .csrf(ServerHttpSecurity.CsrfSpec::disable)
             .logout(logout -> logout
-                .logoutSuccessHandler(oidcLogoutSuccessHandler())
+                .logoutSuccessHandler(oidcLogoutSuccessHandler()) 
             )
             .build();
     }

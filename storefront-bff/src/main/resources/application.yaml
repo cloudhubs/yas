@@ -35,6 +35,7 @@ management:
             requests: true
     tags:
       application: ${spring.application.name}
+
 #  endpoint:
 #    gateway:
 #      enabled: true
@@ -45,6 +46,7 @@ management:
 logging:
   pattern:
     level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
+
 #  level:
 #    org.springframework.cloud.gateway: TRACE
 #    reactor.netty.http.client: TRACE
@@ -53,3 +55,14 @@ yas:
     customer: http://api.yas.local/customer
     cart: http://api.yas.local/cart
     token-identity: http://identity/realms/Yas/protocol/openid-connect/token
+
+security:
+    rules:
+      - patterns: 
+          - "/profile/**"
+          - "/address/**"
+        authenticated: true 
+        
+      - patterns:
+          - "/**"
+        permit-all: true
