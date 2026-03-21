@@ -1,0 +1,18 @@
+{
+    "endpoint_id": 4,
+    "run_number": 2,
+    "generation_status": "FAILED",
+    "exit_code": 1,
+    "timed_out": false,
+    "hung_up": false,
+    "error_type": "NO_CLASS_FILES",
+    "error_message": "No class files generated - compilation failed: [ERROR] /project/src/main/java/com/yas/product/model/Category.java:[4,35] package com.yas.commonlibrary.model does not exist [ERROR] /project/src/main/java/com/yas/product/model/Category.java:[28,31] cannot find symbol [ERROR] /project/src/main/java/com/yas/product/model/Product.java:[4,35] package com.yas.commonlibrary.model does not exist  ",
+    "runs_without_error": false,
+    "threw_errors": true,
+    "error_counts": {
+        "total_errors": 100,
+        "missing_packages": 39,
+        "cannot_find_symbol": 61
+    },
+    "error_details_file": "error-details.txt"
+}

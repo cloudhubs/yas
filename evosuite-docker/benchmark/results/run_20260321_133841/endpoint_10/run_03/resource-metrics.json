@@ -1,0 +1,16 @@
+{
+    "endpoint_id": 10,
+    "run_number": 3,
+    "start_timestamp": "2026-03-21T20:44:06Z",
+    "end_timestamp": "2026-03-21T20:44:10Z",
+    "duration_seconds": 3.926797000,
+    "search_budget_seconds": 120,
+    "cpu_average_percent": 0,
+    "memory_peak_mb": 0,
+    "tests_generated": 0,
+    "test_methods": 0,
+    "assertions": 0,
+    "coverage": "N/A",
+    "total_goals": "N/A",
+    "covered_goals": "N/A"
+}

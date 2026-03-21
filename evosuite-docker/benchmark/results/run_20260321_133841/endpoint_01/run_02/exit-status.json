@@ -1,0 +1,18 @@
+{
+    "endpoint_id": 1,
+    "run_number": 2,
+    "generation_status": "FAILED",
+    "exit_code": 1,
+    "timed_out": false,
+    "hung_up": false,
+    "error_type": "NO_CLASS_FILES",
+    "error_message": "No class files generated - compilation failed: [ERROR] /project/src/main/java/com/yas/rating/config/DatabaseAutoConfig.java:[4,58] package org.springframework.boot.persistence.autoconfigure does not exist [ERROR] /project/src/main/java/com/yas/rating/config/DatabaseAutoConfig.java:[15,2] cannot find symbol [ERROR] /project/src/main/java/com/yas/rating/service/RatingService.java:[3,39] package com.yas.commonlibrary.exception does not exist  ",
+    "runs_without_error": false,
+    "threw_errors": true,
+    "error_counts": {
+        "total_errors": 59,
+        "missing_packages": 25,
+        "cannot_find_symbol": 34
+    },
+    "error_details_file": "error-details.txt"
+}

@@ -1,0 +1,46 @@
+=============================================
+DETAILED ERROR REPORT
+=============================================
+
+Endpoint ID:   6
+Run Number:    3
+Error Type:    NO_CLASS_FILES
+
+=== MAVEN/COMPILATION ERRORS ===
+[ERROR] /project/src/main/java/com/yas/sampledata/controller/SampleDataController.java:[4,36] package com.yas.sampledata.viewmodel does not exist
+[ERROR] /project/src/main/java/com/yas/sampledata/controller/SampleDataController.java:[5,36] package com.yas.sampledata.viewmodel does not exist
+[ERROR] /project/src/main/java/com/yas/sampledata/controller/SampleDataController.java:[6,37] package io.swagger.v3.oas.annotations does not exist
+[ERROR] /project/src/main/java/com/yas/sampledata/controller/SampleDataController.java:[7,43] package io.swagger.v3.oas.annotations.media does not exist
+[ERROR] /project/src/main/java/com/yas/sampledata/controller/SampleDataController.java:[8,43] package io.swagger.v3.oas.annotations.media does not exist
+[ERROR] /project/src/main/java/com/yas/sampledata/controller/SampleDataController.java:[9,47] package io.swagger.v3.oas.annotations.responses does not exist
+[ERROR] /project/src/main/java/com/yas/sampledata/controller/SampleDataController.java:[10,47] package io.swagger.v3.oas.annotations.responses does not exist
+[ERROR] /project/src/main/java/com/yas/sampledata/service/SampleDataService.java:[4,36] package com.yas.sampledata.viewmodel does not exist
+[ERROR] /project/src/main/java/com/yas/sampledata/controller/SampleDataController.java:[34,62] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/sampledata/controller/SampleDataController.java:[34,12] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/sampledata/service/SampleDataService.java:[24,12] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/sampledata/config/RestClientConfig.java:[5,38] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/sampledata/config/RestClientConfig.java:[11,12] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/sampledata/controller/SampleDataController.java:[27,6] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/sampledata/controller/SampleDataController.java:[29,6] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/sampledata/controller/SampleDataController.java:[30,10] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/sampledata/controller/SampleDataController.java:[31,24] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/sampledata/controller/SampleDataController.java:[31,42] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/sampledata/controller/SampleDataController.java:[31,66] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/sampledata/controller/SampleDataController.java:[32,10] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/sampledata/controller/SampleDataController.java:[33,24] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/sampledata/controller/SampleDataController.java:[33,42] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/sampledata/controller/SampleDataController.java:[33,66] cannot find symbol
+
+=== EXCEPTIONS/STACK TRACES ===
+Error: No class files generated
+
+=== ERROR COUNTS ===
+Missing packages:    8
+Cannot find symbol:  15
+
+=== MISSING PACKAGES (unique) ===
+package com.yas.sampledata.viewmodel does not exist
+package io.swagger.v3.oas.annotations does not exist
+package io.swagger.v3.oas.annotations.media does not exist
+package io.swagger.v3.oas.annotations.responses does not exist
+

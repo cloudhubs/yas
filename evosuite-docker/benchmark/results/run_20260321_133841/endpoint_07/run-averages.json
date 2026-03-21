@@ -1,0 +1,117 @@
+{
+  "endpoint_id": 7,
+  "aggregation_timestamp": "2026-03-21T20:42:24.825464Z",
+  "total_runs": 3,
+  "successful_runs": 0,
+  "failed_runs": 3,
+  "success_rate": 0.0,
+  "generation_time": {
+    "avg": 3.7651,
+    "min": 3.474,
+    "max": 4.1553,
+    "std_dev": 0.3513,
+    "count": 3
+  },
+  "cpu_usage": {
+    "avg": 0.0,
+    "min": 0.0,
+    "max": 0.0,
+    "std_dev": 0.0,
+    "count": 3
+  },
+  "memory_usage": {
+    "avg": 0.0,
+    "min": 0.0,
+    "max": 0.0,
+    "std_dev": 0.0,
+    "count": 3
+  },
+  "tests_generated": {
+    "avg": 0.0,
+    "min": 0.0,
+    "max": 0.0,
+    "std_dev": 0.0,
+    "count": 3
+  },
+  "test_methods": {
+    "avg": 0.0,
+    "min": 0.0,
+    "max": 0.0,
+    "std_dev": 0.0,
+    "count": 3
+  },
+  "assertions": {
+    "avg": 0.0,
+    "min": 0.0,
+    "max": 0.0,
+    "std_dev": 0.0,
+    "count": 3
+  },
+  "exit_codes": {
+    "values": [
+      1,
+      1,
+      1
+    ],
+    "unique": [
+      1
+    ]
+  },
+  "timed_out_count": 0,
+  "hung_up_count": 0,
+  "error_summary": {
+    "primary_error_type": "NO_CLASS_FILES",
+    "error_types": {
+      "NO_CLASS_FILES": 3
+    },
+    "total_compilation_errors": {
+      "avg": 59.0,
+      "min": 59.0,
+      "max": 59.0,
+      "std_dev": 0.0,
+      "count": 3
+    },
+    "missing_packages_errors": {
+      "avg": 25.0,
+      "min": 25.0,
+      "max": 25.0,
+      "std_dev": 0.0,
+      "count": 3
+    },
+    "unique_error_messages": [
+      "No class files generated - compilation failed: [ERROR] /project/src/main/java/com/yas/rating/config/DatabaseAutoConfig.java:[4,58] package org.springframework.boot.persistence.autoconfigure does not exist [ERROR] /project/src/main/java/com/yas/rating/config/DatabaseAutoConfig.java:[15,2] cannot find symbol [ERROR] /project/src/main/java/com/yas/rating/service/RatingService.java:[3,39] package com.yas.commonlibrary.exception does not exist  "
+    ]
+  },
+  "individual_runs": [
+    {
+      "run_number": 1,
+      "duration_sec": 3.666049,
+      "cpu_pct": 0,
+      "memory_mb": 0,
+      "tests": 0,
+      "exit_code": 1,
+      "error_type": "NO_CLASS_FILES",
+      "error_message": "No class files generated - compilation failed: [ERROR] /project/src/main/java/com/yas/rating/config/DatabaseAutoConfig.java:[4,58] package org.springframework.boot.persistence.autoconfigure does not e"
+    },
+    {
+      "run_number": 2,
+      "duration_sec": 4.155285,
+      "cpu_pct": 0,
+      "memory_mb": 0,
+      "tests": 0,
+      "exit_code": 1,
+      "error_type": "NO_CLASS_FILES",
+      "error_message": "No class files generated - compilation failed: [ERROR] /project/src/main/java/com/yas/rating/config/DatabaseAutoConfig.java:[4,58] package org.springframework.boot.persistence.autoconfigure does not e"
+    },
+    {
+      "run_number": 3,
+      "duration_sec": 3.474032,
+      "cpu_pct": 0,
+      "memory_mb": 0,
+      "tests": 0,
+      "exit_code": 1,
+      "error_type": "NO_CLASS_FILES",
+      "error_message": "No class files generated - compilation failed: [ERROR] /project/src/main/java/com/yas/rating/config/DatabaseAutoConfig.java:[4,58] package org.springframework.boot.persistence.autoconfigure does not e"
+    }
+  ]
+}

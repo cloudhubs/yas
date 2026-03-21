@@ -1,0 +1,84 @@
+=============================================
+DETAILED ERROR REPORT
+=============================================
+
+Endpoint ID:   3
+Run Number:    2
+Error Type:    NO_CLASS_FILES
+
+=== MAVEN/COMPILATION ERRORS ===
+[ERROR] /project/src/main/java/com/yas/cart/model/CartItem.java:[8,35] package com.yas.commonlibrary.model does not exist
+[ERROR] /project/src/main/java/com/yas/cart/model/CartItem.java:[22,31] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/cart/mapper/CartItemMapper.java:[4,30] package com.yas.cart.viewmodel does not exist
+[ERROR] /project/src/main/java/com/yas/cart/mapper/CartItemMapper.java:[5,30] package com.yas.cart.viewmodel does not exist
+[ERROR] /project/src/main/java/com/yas/cart/mapper/CartItemMapper.java:[11,12] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/cart/mapper/CartItemMapper.java:[20,32] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/cart/mapper/CartItemMapper.java:[38,17] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/cart/controller/CartItemController.java:[4,30] package com.yas.cart.viewmodel does not exist
+[ERROR] /project/src/main/java/com/yas/cart/controller/CartItemController.java:[5,30] package com.yas.cart.viewmodel does not exist
+[ERROR] /project/src/main/java/com/yas/cart/controller/CartItemController.java:[6,30] package com.yas.cart.viewmodel does not exist
+[ERROR] /project/src/main/java/com/yas/cart/controller/CartItemController.java:[7,30] package com.yas.cart.viewmodel does not exist
+[ERROR] /project/src/main/java/com/yas/cart/service/CartItemService.java:[7,30] package com.yas.cart.viewmodel does not exist
+[ERROR] /project/src/main/java/com/yas/cart/service/CartItemService.java:[8,30] package com.yas.cart.viewmodel does not exist
+[ERROR] /project/src/main/java/com/yas/cart/service/CartItemService.java:[9,30] package com.yas.cart.viewmodel does not exist
+[ERROR] /project/src/main/java/com/yas/cart/service/CartItemService.java:[10,30] package com.yas.cart.viewmodel does not exist
+[ERROR] /project/src/main/java/com/yas/cart/service/CartItemService.java:[11,39] package com.yas.commonlibrary.exception does not exist
+[ERROR] /project/src/main/java/com/yas/cart/service/CartItemService.java:[12,39] package com.yas.commonlibrary.exception does not exist
+[ERROR] /project/src/main/java/com/yas/cart/service/CartItemService.java:[13,39] package com.yas.commonlibrary.exception does not exist
+[ERROR] /project/src/main/java/com/yas/cart/service/CartItemService.java:[14,35] package com.yas.commonlibrary.utils does not exist
+[ERROR] /project/src/main/java/com/yas/cart/controller/CartItemController.java:[26,74] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/cart/controller/CartItemController.java:[26,27] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/cart/controller/CartItemController.java:[33,77] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/cart/controller/CartItemController.java:[32,27] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/cart/controller/CartItemController.java:[39,32] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/cart/controller/CartItemController.java:[46,34] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/cart/controller/CartItemController.java:[45,32] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/cart/service/ProductService.java:[3,30] package com.yas.cart.viewmodel does not exist
+[ERROR] /project/src/main/java/com/yas/cart/service/ProductService.java:[4,36] package com.yas.commonlibrary.config does not exist
+[ERROR] /project/src/main/java/com/yas/cart/service/ProductService.java:[5,56] package io.github.resilience4j.circuitbreaker.annotation does not exist
+[ERROR] /project/src/main/java/com/yas/cart/service/ProductService.java:[6,47] package io.github.resilience4j.retry.annotation does not exist
+[ERROR] /project/src/main/java/com/yas/cart/service/ProductService.java:[10,39] package org.apache.commons.collections4 does not exist
+[ERROR] /project/src/main/java/com/yas/cart/service/ProductService.java:[13,38] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/cart/service/CartItemService.java:[38,38] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/cart/service/CartItemService.java:[38,12] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/cart/service/CartItemService.java:[48,57] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/cart/service/CartItemService.java:[48,12] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/cart/service/CartItemService.java:[58,17] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/cart/service/CartItemService.java:[65,60] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/cart/service/CartItemService.java:[65,17] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/cart/service/CartItemService.java:[103,41] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/cart/service/CartItemService.java:[114,40] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/cart/service/CartItemService.java:[119,45] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/cart/service/CartItemService.java:[124,49] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/cart/service/CartItemService.java:[138,63] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/cart/service/ProductService.java:[19,19] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/cart/service/ProductService.java:[20,19] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/cart/service/ProductService.java:[24,17] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/cart/service/ProductService.java:[39,12] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/cart/service/ProductService.java:[51,20] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/cart/service/ProductService.java:[17,1] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/cart/config/DatabaseAutoConfig.java:[4,58] package org.springframework.boot.persistence.autoconfigure does not exist
+[ERROR] /project/src/main/java/com/yas/cart/config/DatabaseAutoConfig.java:[15,2] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/cart/config/RestClientConfig.java:[5,38] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/cart/config/RestClientConfig.java:[11,12] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/cart/service/ProductService.java:[22,6] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/cart/service/ProductService.java:[23,6] cannot find symbol
+
+=== EXCEPTIONS/STACK TRACES ===
+Error: No class files generated
+
+=== ERROR COUNTS ===
+Missing packages:    21
+Cannot find symbol:  35
+
+=== MISSING PACKAGES (unique) ===
+package com.yas.cart.viewmodel does not exist
+package com.yas.commonlibrary.config does not exist
+package com.yas.commonlibrary.exception does not exist
+package com.yas.commonlibrary.model does not exist
+package com.yas.commonlibrary.utils does not exist
+package io.github.resilience4j.circuitbreaker.annotation does not exist
+package io.github.resilience4j.retry.annotation does not exist
+package org.apache.commons.collections4 does not exist
+package org.springframework.boot.persistence.autoconfigure does not exist
+

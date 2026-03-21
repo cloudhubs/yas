@@ -1,0 +1,127 @@
+=============================================
+DETAILED ERROR REPORT
+=============================================
+
+Endpoint ID:   9
+Run Number:    1
+Error Type:    NO_CLASS_FILES
+
+=== MAVEN/COMPILATION ERRORS ===
+[ERROR] /project/src/main/java/com/yas/product/model/Category.java:[4,35] package com.yas.commonlibrary.model does not exist
+[ERROR] /project/src/main/java/com/yas/product/model/Category.java:[28,31] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/model/Product.java:[4,35] package com.yas.commonlibrary.model does not exist
+[ERROR] /project/src/main/java/com/yas/product/model/Product.java:[34,30] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/model/Brand.java:[11,35] package com.yas.commonlibrary.model does not exist
+[ERROR] /project/src/main/java/com/yas/product/model/Brand.java:[20,28] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/model/attribute/ProductAttribute.java:[4,35] package com.yas.commonlibrary.model does not exist
+[ERROR] /project/src/main/java/com/yas/product/model/attribute/ProductAttribute.java:[28,39] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/model/attribute/ProductAttributeGroup.java:[3,35] package com.yas.commonlibrary.model does not exist
+[ERROR] /project/src/main/java/com/yas/product/model/attribute/ProductAttributeGroup.java:[16,44] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/model/attribute/ProductTemplate.java:[3,35] package com.yas.commonlibrary.model does not exist
+[ERROR] /project/src/main/java/com/yas/product/model/attribute/ProductTemplate.java:[26,38] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/controller/ProductAttributeController.java:[3,39] package com.yas.commonlibrary.exception does not exist
+[ERROR] /project/src/main/java/com/yas/product/controller/ProductAttributeController.java:[4,39] package com.yas.commonlibrary.exception does not exist
+[ERROR] /project/src/main/java/com/yas/product/controller/ProductAttributeController.java:[10,39] package com.yas.product.viewmodel.error does not exist
+[ERROR] /project/src/main/java/com/yas/product/controller/ProductAttributeController.java:[11,50] package com.yas.product.viewmodel.productattribute does not exist
+[ERROR] /project/src/main/java/com/yas/product/controller/ProductAttributeController.java:[12,50] package com.yas.product.viewmodel.productattribute does not exist
+[ERROR] /project/src/main/java/com/yas/product/controller/ProductAttributeController.java:[13,50] package com.yas.product.viewmodel.productattribute does not exist
+[ERROR] /project/src/main/java/com/yas/product/controller/ProductAttributeController.java:[14,43] package io.swagger.v3.oas.annotations.media does not exist
+[ERROR] /project/src/main/java/com/yas/product/controller/ProductAttributeController.java:[15,43] package io.swagger.v3.oas.annotations.media does not exist
+[ERROR] /project/src/main/java/com/yas/product/controller/ProductAttributeController.java:[16,47] package io.swagger.v3.oas.annotations.responses does not exist
+[ERROR] /project/src/main/java/com/yas/product/controller/ProductAttributeController.java:[17,47] package io.swagger.v3.oas.annotations.responses does not exist
+[ERROR] /project/src/main/java/com/yas/product/service/ProductAttributeService.java:[3,39] package com.yas.commonlibrary.exception does not exist
+[ERROR] /project/src/main/java/com/yas/product/service/ProductAttributeService.java:[4,39] package com.yas.commonlibrary.exception does not exist
+[ERROR] /project/src/main/java/com/yas/product/service/ProductAttributeService.java:[5,39] package com.yas.commonlibrary.exception does not exist
+[ERROR] /project/src/main/java/com/yas/product/service/ProductAttributeService.java:[11,50] package com.yas.product.viewmodel.productattribute does not exist
+[ERROR] /project/src/main/java/com/yas/product/service/ProductAttributeService.java:[12,50] package com.yas.product.viewmodel.productattribute does not exist
+[ERROR] /project/src/main/java/com/yas/product/service/ProductAttributeService.java:[13,50] package com.yas.product.viewmodel.productattribute does not exist
+[ERROR] /project/src/main/java/com/yas/product/controller/ProductAttributeController.java:[45,32] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/controller/ProductAttributeController.java:[54,27] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/controller/ProductAttributeController.java:[70,27] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/controller/ProductAttributeController.java:[85,33] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/controller/ProductAttributeController.java:[84,27] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/controller/ProductAttributeController.java:[105,39] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/service/ProductAttributeService.java:[34,12] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/service/ProductAttributeService.java:[53,34] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/service/ProductAttributeService.java:[70,36] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/controller/ProductController.java:[6,39] package com.yas.product.viewmodel.error does not exist
+[ERROR] /project/src/main/java/com/yas/product/controller/ProductController.java:[7,41] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/controller/ProductController.java:[9,41] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/controller/ProductController.java:[10,41] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/controller/ProductController.java:[11,41] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/controller/ProductController.java:[12,41] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/controller/ProductController.java:[13,41] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/controller/ProductController.java:[14,41] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/controller/ProductController.java:[15,41] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/controller/ProductController.java:[16,41] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/controller/ProductController.java:[17,41] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/controller/ProductController.java:[18,41] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/controller/ProductController.java:[19,41] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/controller/ProductController.java:[20,41] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/controller/ProductController.java:[21,41] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/controller/ProductController.java:[22,41] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/controller/ProductController.java:[23,41] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/controller/ProductController.java:[24,41] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/controller/ProductController.java:[25,41] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/controller/ProductController.java:[26,41] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/controller/ProductController.java:[27,41] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/controller/ProductController.java:[28,43] package io.swagger.v3.oas.annotations.media does not exist
+[ERROR] /project/src/main/java/com/yas/product/controller/ProductController.java:[29,43] package io.swagger.v3.oas.annotations.media does not exist
+[ERROR] /project/src/main/java/com/yas/product/controller/ProductController.java:[30,43] package io.swagger.v3.oas.annotations.media does not exist
+[ERROR] /project/src/main/java/com/yas/product/controller/ProductController.java:[31,47] package io.swagger.v3.oas.annotations.responses does not exist
+[ERROR] /project/src/main/java/com/yas/product/controller/ProductController.java:[32,47] package io.swagger.v3.oas.annotations.responses does not exist
+[ERROR] /project/src/main/java/com/yas/product/service/ProductService.java:[3,39] package com.yas.commonlibrary.exception does not exist
+[ERROR] /project/src/main/java/com/yas/product/service/ProductService.java:[4,39] package com.yas.commonlibrary.exception does not exist
+[ERROR] /project/src/main/java/com/yas/product/service/ProductService.java:[5,39] package com.yas.commonlibrary.exception does not exist
+[ERROR] /project/src/main/java/com/yas/product/service/ProductService.java:[6,39] package com.yas.commonlibrary.exception does not exist
+[ERROR] /project/src/main/java/com/yas/product/service/ProductService.java:[31,33] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/service/ProductService.java:[32,41] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/service/ProductService.java:[33,41] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/service/ProductService.java:[34,41] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/service/ProductService.java:[35,41] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/service/ProductService.java:[36,41] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/service/ProductService.java:[37,41] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/service/ProductService.java:[38,41] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/service/ProductService.java:[39,41] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/service/ProductService.java:[40,41] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/service/ProductService.java:[41,41] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/service/ProductService.java:[42,41] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/service/ProductService.java:[43,41] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/service/ProductService.java:[44,41] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/service/ProductService.java:[46,41] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/service/ProductService.java:[47,41] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/service/ProductService.java:[48,41] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/service/ProductService.java:[50,41] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/service/ProductService.java:[51,41] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/service/ProductService.java:[52,41] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/service/ProductService.java:[53,41] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/service/ProductService.java:[54,41] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/service/ProductService.java:[55,41] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/service/ProductService.java:[56,41] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/service/ProductService.java:[57,50] package com.yas.product.viewmodel.productattribute does not exist
+[ERROR] /project/src/main/java/com/yas/product/service/ProductService.java:[58,50] package com.yas.product.viewmodel.productattribute does not exist
+[ERROR] /project/src/main/java/com/yas/product/service/ProductService.java:[59,33] package io.micrometer.common.util does not exist
+[ERROR] /project/src/main/java/com/yas/product/service/ProductService.java:[72,39] package org.apache.commons.collections4 does not exist
+[ERROR] /project/src/main/java/com/yas/product/service/ProductService.java:[73,39] package org.apache.commons.collections4 does not exist
+[ERROR] /project/src/main/java/com/yas/product/service/ProductDetailService.java:[3,39] package com.yas.commonlibrary.exception does not exist
+[ERROR] /project/src/main/java/com/yas/product/service/ProductDetailService.java:[12,33] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/service/ProductDetailService.java:[14,41] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/product/service/ProductDetailService.java:[15,50] package com.yas.product.viewmodel.productattribute does not exist
+
+=== EXCEPTIONS/STACK TRACES ===
+Error: No class files generated
+
+=== ERROR COUNTS ===
+Missing packages:    39
+Cannot find symbol:  61
+
+=== MISSING PACKAGES (unique) ===
+package com.yas.commonlibrary.exception does not exist
+package com.yas.commonlibrary.model does not exist
+package com.yas.product.viewmodel.error does not exist
+package com.yas.product.viewmodel.productattribute does not exist
+package io.micrometer.common.util does not exist
+package io.swagger.v3.oas.annotations.media does not exist
+package io.swagger.v3.oas.annotations.responses does not exist
+package org.apache.commons.collections4 does not exist
+

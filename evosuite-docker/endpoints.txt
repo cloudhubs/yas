@@ -1,0 +1,16 @@
+# EvoSuite Endpoint Test Configuration for YAS
+# Format: service|endpoint|method|controller_class
+#
+# This file lists 10 endpoints to test with EvoSuite for research benchmarking.
+# Each line will generate a separate log file.
+
+rating|backoffice/ratings/latest/{count}|GET|com.yas.rating.controller.RatingController
+customer|storefront/customer/profile|GET|com.yas.customer.controller.CustomerController
+cart|storefront/cart/items|GET|com.yas.cart.controller.CartItemController
+product|backoffice/products|POST|com.yas.product.controller.ProductController
+rating|storefront/ratings|POST|com.yas.rating.controller.RatingController
+sampledata|storefront/sampledata|POST|com.yas.sampledata.controller.SampleDataController
+rating|backoffice/ratings/{id}|DELETE|com.yas.rating.controller.RatingController
+inventory|backoffice/warehouses/{id}|DELETE|com.yas.inventory.controller.WarehouseController
+product|backoffice/products/subtract-quantity|PUT|com.yas.product.controller.ProductController
+location|backoffice/state-or-provinces/{id}|PUT|com.yas.location.controller.StateOrProvinceController

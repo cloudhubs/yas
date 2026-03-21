@@ -1,0 +1,18 @@
+{
+    "endpoint_id": 8,
+    "run_number": 3,
+    "generation_status": "FAILED",
+    "exit_code": 1,
+    "timed_out": false,
+    "hung_up": false,
+    "error_type": "NO_CLASS_FILES",
+    "error_message": "No class files generated - compilation failed: [ERROR] /project/src/main/java/com/yas/inventory/controller/StockHistoryController.java:[5,48] package com.yas.inventory.viewmodel.stockhistory does not exist [ERROR] /project/src/main/java/com/yas/inventory/service/StockHistoryService.java:[6,43] package com.yas.inventory.viewmodel.product does not exist [ERROR] /project/src/main/java/com/yas/inventory/service/StockHistoryService.java:[7,41] package com.yas.inventory.viewmodel.stock does not exist ",
+    "runs_without_error": false,
+    "threw_errors": true,
+    "error_counts": {
+        "total_errors": 100,
+        "missing_packages": 55,
+        "cannot_find_symbol": 45
+    },
+    "error_details_file": "error-details.txt"
+}

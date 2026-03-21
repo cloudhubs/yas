@@ -1,0 +1,117 @@
+{
+  "endpoint_id": 9,
+  "aggregation_timestamp": "2026-03-21T20:43:38.047152Z",
+  "total_runs": 3,
+  "successful_runs": 0,
+  "failed_runs": 3,
+  "success_rate": 0.0,
+  "generation_time": {
+    "avg": 6.6415,
+    "min": 6.0186,
+    "max": 7.7678,
+    "std_dev": 0.9773,
+    "count": 3
+  },
+  "cpu_usage": {
+    "avg": 93.5933,
+    "min": 0.0,
+    "max": 280.78,
+    "std_dev": 162.1084,
+    "count": 3
+  },
+  "memory_usage": {
+    "avg": 165.3667,
+    "min": 0.0,
+    "max": 496.1,
+    "std_dev": 286.4235,
+    "count": 3
+  },
+  "tests_generated": {
+    "avg": 0.0,
+    "min": 0.0,
+    "max": 0.0,
+    "std_dev": 0.0,
+    "count": 3
+  },
+  "test_methods": {
+    "avg": 0.0,
+    "min": 0.0,
+    "max": 0.0,
+    "std_dev": 0.0,
+    "count": 3
+  },
+  "assertions": {
+    "avg": 0.0,
+    "min": 0.0,
+    "max": 0.0,
+    "std_dev": 0.0,
+    "count": 3
+  },
+  "exit_codes": {
+    "values": [
+      1,
+      1,
+      1
+    ],
+    "unique": [
+      1
+    ]
+  },
+  "timed_out_count": 0,
+  "hung_up_count": 0,
+  "error_summary": {
+    "primary_error_type": "NO_CLASS_FILES",
+    "error_types": {
+      "NO_CLASS_FILES": 3
+    },
+    "total_compilation_errors": {
+      "avg": 100.0,
+      "min": 100.0,
+      "max": 100.0,
+      "std_dev": 0.0,
+      "count": 3
+    },
+    "missing_packages_errors": {
+      "avg": 39.0,
+      "min": 39.0,
+      "max": 39.0,
+      "std_dev": 0.0,
+      "count": 3
+    },
+    "unique_error_messages": [
+      "No class files generated - compilation failed: [ERROR] /project/src/main/java/com/yas/product/model/Category.java:[4,35] package com.yas.commonlibrary.model does not exist [ERROR] /project/src/main/java/com/yas/product/model/Category.java:[28,31] cannot find symbol [ERROR] /project/src/main/java/com/yas/product/model/Product.java:[4,35] package com.yas.commonlibrary.model does not exist  "
+    ]
+  },
+  "individual_runs": [
+    {
+      "run_number": 1,
+      "duration_sec": 7.767795,
+      "cpu_pct": 280.78,
+      "memory_mb": 496.1,
+      "tests": 0,
+      "exit_code": 1,
+      "error_type": "NO_CLASS_FILES",
+      "error_message": "No class files generated - compilation failed: [ERROR] /project/src/main/java/com/yas/product/model/Category.java:[4,35] package com.yas.commonlibrary.model does not exist [ERROR] /project/src/main/ja"
+    },
+    {
+      "run_number": 2,
+      "duration_sec": 6.138017,
+      "cpu_pct": 0,
+      "memory_mb": 0,
+      "tests": 0,
+      "exit_code": 1,
+      "error_type": "NO_CLASS_FILES",
+      "error_message": "No class files generated - compilation failed: [ERROR] /project/src/main/java/com/yas/product/model/Category.java:[4,35] package com.yas.commonlibrary.model does not exist [ERROR] /project/src/main/ja"
+    },
+    {
+      "run_number": 3,
+      "duration_sec": 6.018567,
+      "cpu_pct": 0,
+      "memory_mb": 0,
+      "tests": 0,
+      "exit_code": 1,
+      "error_type": "NO_CLASS_FILES",
+      "error_message": "No class files generated - compilation failed: [ERROR] /project/src/main/java/com/yas/product/model/Category.java:[4,35] package com.yas.commonlibrary.model does not exist [ERROR] /project/src/main/ja"
+    }
+  ]
+}

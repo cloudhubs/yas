@@ -1,0 +1,117 @@
+{
+  "endpoint_id": 8,
+  "aggregation_timestamp": "2026-03-21T20:42:57.028870Z",
+  "total_runs": 3,
+  "successful_runs": 0,
+  "failed_runs": 3,
+  "success_rate": 0.0,
+  "generation_time": {
+    "avg": 3.8908,
+    "min": 3.873,
+    "max": 3.9189,
+    "std_dev": 0.0246,
+    "count": 3
+  },
+  "cpu_usage": {
+    "avg": 0.0,
+    "min": 0.0,
+    "max": 0.0,
+    "std_dev": 0.0,
+    "count": 3
+  },
+  "memory_usage": {
+    "avg": 0.0,
+    "min": 0.0,
+    "max": 0.0,
+    "std_dev": 0.0,
+    "count": 3
+  },
+  "tests_generated": {
+    "avg": 0.0,
+    "min": 0.0,
+    "max": 0.0,
+    "std_dev": 0.0,
+    "count": 3
+  },
+  "test_methods": {
+    "avg": 0.0,
+    "min": 0.0,
+    "max": 0.0,
+    "std_dev": 0.0,
+    "count": 3
+  },
+  "assertions": {
+    "avg": 0.0,
+    "min": 0.0,
+    "max": 0.0,
+    "std_dev": 0.0,
+    "count": 3
+  },
+  "exit_codes": {
+    "values": [
+      1,
+      1,
+      1
+    ],
+    "unique": [
+      1
+    ]
+  },
+  "timed_out_count": 0,
+  "hung_up_count": 0,
+  "error_summary": {
+    "primary_error_type": "NO_CLASS_FILES",
+    "error_types": {
+      "NO_CLASS_FILES": 3
+    },
+    "total_compilation_errors": {
+      "avg": 100.0,
+      "min": 100.0,
+      "max": 100.0,
+      "std_dev": 0.0,
+      "count": 3
+    },
+    "missing_packages_errors": {
+      "avg": 55.0,
+      "min": 55.0,
+      "max": 55.0,
+      "std_dev": 0.0,
+      "count": 3
+    },
+    "unique_error_messages": [
+      "No class files generated - compilation failed: [ERROR] /project/src/main/java/com/yas/inventory/controller/StockHistoryController.java:[5,48] package com.yas.inventory.viewmodel.stockhistory does not exist [ERROR] /project/src/main/java/com/yas/inventory/service/StockHistoryService.java:[6,43] package com.yas.inventory.viewmodel.product does not exist [ERROR] /project/src/main/java/com/yas/inventory/service/StockHistoryService.java:[7,41] package com.yas.inventory.viewmodel.stock does not exist "
+    ]
+  },
+  "individual_runs": [
+    {
+      "run_number": 1,
+      "duration_sec": 3.918896,
+      "cpu_pct": 0,
+      "memory_mb": 0,
+      "tests": 0,
+      "exit_code": 1,
+      "error_type": "NO_CLASS_FILES",
+      "error_message": "No class files generated - compilation failed: [ERROR] /project/src/main/java/com/yas/inventory/controller/StockHistoryController.java:[5,48] package com.yas.inventory.viewmodel.stockhistory does not "
+    },
+    {
+      "run_number": 2,
+      "duration_sec": 3.880647,
+      "cpu_pct": 0,
+      "memory_mb": 0,
+      "tests": 0,
+      "exit_code": 1,
+      "error_type": "NO_CLASS_FILES",
+      "error_message": "No class files generated - compilation failed: [ERROR] /project/src/main/java/com/yas/inventory/controller/StockHistoryController.java:[5,48] package com.yas.inventory.viewmodel.stockhistory does not "
+    },
+    {
+      "run_number": 3,
+      "duration_sec": 3.872979,
+      "cpu_pct": 0,
+      "memory_mb": 0,
+      "tests": 0,
+      "exit_code": 1,
+      "error_type": "NO_CLASS_FILES",
+      "error_message": "No class files generated - compilation failed: [ERROR] /project/src/main/java/com/yas/inventory/controller/StockHistoryController.java:[5,48] package com.yas.inventory.viewmodel.stockhistory does not "
+    }
+  ]
+}

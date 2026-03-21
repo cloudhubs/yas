@@ -1,0 +1,134 @@
+=============================================
+DETAILED ERROR REPORT
+=============================================
+
+Endpoint ID:   8
+Run Number:    1
+Error Type:    NO_CLASS_FILES
+
+=== MAVEN/COMPILATION ERRORS ===
+[ERROR] /project/src/main/java/com/yas/inventory/controller/StockHistoryController.java:[5,48] package com.yas.inventory.viewmodel.stockhistory does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/service/StockHistoryService.java:[6,43] package com.yas.inventory.viewmodel.product does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/service/StockHistoryService.java:[7,41] package com.yas.inventory.viewmodel.stock does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/service/StockHistoryService.java:[8,48] package com.yas.inventory.viewmodel.stockhistory does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/service/StockHistoryService.java:[9,48] package com.yas.inventory.viewmodel.stockhistory does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/controller/StockHistoryController.java:[22,27] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/inventory/model/StockHistory.java:[12,35] package com.yas.commonlibrary.model does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/model/StockHistory.java:[28,35] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/inventory/service/ProductService.java:[3,32] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/inventory/service/ProductService.java:[6,43] package com.yas.inventory.viewmodel.product does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/service/ProductService.java:[7,43] package com.yas.inventory.viewmodel.product does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/service/ProductService.java:[8,56] package io.github.resilience4j.circuitbreaker.annotation does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/service/ProductService.java:[9,47] package io.github.resilience4j.retry.annotation does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/service/ProductService.java:[16,47] package org.springframework.security.oauth2.jwt does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/service/ProductService.java:[21,38] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/inventory/model/Stock.java:[12,35] package com.yas.commonlibrary.model does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/model/Stock.java:[28,28] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/inventory/service/StockHistoryService.java:[29,49] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/inventory/service/StockHistoryService.java:[55,12] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/inventory/model/Warehouse.java:[10,35] package com.yas.commonlibrary.model does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/model/Warehouse.java:[26,32] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/inventory/service/ProductService.java:[27,19] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/inventory/service/ProductService.java:[28,19] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/inventory/service/ProductService.java:[32,12] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/inventory/service/ProductService.java:[49,17] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/inventory/service/ProductService.java:[77,44] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/inventory/service/ProductService.java:[95,15] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/inventory/service/ProductService.java:[99,20] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/inventory/service/ProductService.java:[25,1] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/inventory/service/StockService.java:[3,39] package com.yas.commonlibrary.exception does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/service/StockService.java:[4,39] package com.yas.commonlibrary.exception does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/service/StockService.java:[5,39] package com.yas.commonlibrary.exception does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/service/StockService.java:[13,43] package com.yas.inventory.viewmodel.product does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/service/StockService.java:[14,43] package com.yas.inventory.viewmodel.product does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/service/StockService.java:[15,41] package com.yas.inventory.viewmodel.stock does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/service/StockService.java:[16,41] package com.yas.inventory.viewmodel.stock does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/service/StockService.java:[17,41] package com.yas.inventory.viewmodel.stock does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/service/StockService.java:[18,41] package com.yas.inventory.viewmodel.stock does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/service/WarehouseService.java:[3,39] package com.yas.commonlibrary.exception does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/service/WarehouseService.java:[4,39] package com.yas.commonlibrary.exception does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/service/WarehouseService.java:[10,43] package com.yas.inventory.viewmodel.address does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/service/WarehouseService.java:[11,43] package com.yas.inventory.viewmodel.address does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/service/WarehouseService.java:[12,43] package com.yas.inventory.viewmodel.address does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/service/WarehouseService.java:[13,43] package com.yas.inventory.viewmodel.product does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/service/WarehouseService.java:[14,45] package com.yas.inventory.viewmodel.warehouse does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/service/WarehouseService.java:[15,45] package com.yas.inventory.viewmodel.warehouse does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/service/WarehouseService.java:[16,45] package com.yas.inventory.viewmodel.warehouse does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/service/WarehouseService.java:[17,45] package com.yas.inventory.viewmodel.warehouse does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/service/StockService.java:[49,46] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/inventory/service/StockService.java:[86,17] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/inventory/service/StockService.java:[112,52] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/inventory/service/LocationService.java:[3,32] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/inventory/service/LocationService.java:[4,43] package com.yas.inventory.viewmodel.address does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/service/LocationService.java:[5,43] package com.yas.inventory.viewmodel.address does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/service/LocationService.java:[6,43] package com.yas.inventory.viewmodel.address does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/service/LocationService.java:[7,56] package io.github.resilience4j.circuitbreaker.annotation does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/service/LocationService.java:[8,47] package io.github.resilience4j.retry.annotation does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/service/LocationService.java:[12,47] package org.springframework.security.oauth2.jwt does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/service/LocationService.java:[14,38] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/inventory/service/WarehouseService.java:[37,17] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/inventory/service/WarehouseService.java:[45,17] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/inventory/service/WarehouseService.java:[63,12] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/inventory/service/WarehouseService.java:[87,35] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/inventory/service/WarehouseService.java:[111,30] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/inventory/service/WarehouseService.java:[149,12] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/inventory/service/LocationService.java:[20,19] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/inventory/service/LocationService.java:[21,19] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/inventory/service/LocationService.java:[26,12] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/inventory/service/LocationService.java:[44,36] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/inventory/service/LocationService.java:[44,12] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/inventory/service/LocationService.java:[63,40] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/inventory/service/LocationService.java:[95,13] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/inventory/service/LocationService.java:[99,13] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/inventory/service/LocationService.java:[18,1] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/inventory/controller/StockController.java:[5,41] package com.yas.inventory.viewmodel.stock does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/controller/StockController.java:[6,41] package com.yas.inventory.viewmodel.stock does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/controller/StockController.java:[7,41] package com.yas.inventory.viewmodel.stock does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/controller/StockController.java:[26,75] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/inventory/controller/StockController.java:[32,32] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/inventory/controller/StockController.java:[44,75] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/inventory/config/RestClientConfig.java:[5,38] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/inventory/config/RestClientConfig.java:[11,12] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/inventory/config/DatabaseAutoConfig.java:[4,58] package org.springframework.boot.persistence.autoconfigure does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/config/DatabaseAutoConfig.java:[15,2] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/inventory/utils/AuthenticationUtils.java:[3,39] package com.yas.commonlibrary.exception does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/utils/AuthenticationUtils.java:[8,47] package org.springframework.security.oauth2.jwt does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/utils/AuthenticationUtils.java:[9,74] package org.springframework.security.oauth2.server.resource.authentication does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/controller/WarehouseController.java:[8,41] package com.yas.inventory.viewmodel.error does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/controller/WarehouseController.java:[9,43] package com.yas.inventory.viewmodel.product does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/controller/WarehouseController.java:[10,45] package com.yas.inventory.viewmodel.warehouse does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/controller/WarehouseController.java:[11,45] package com.yas.inventory.viewmodel.warehouse does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/controller/WarehouseController.java:[12,45] package com.yas.inventory.viewmodel.warehouse does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/controller/WarehouseController.java:[13,45] package com.yas.inventory.viewmodel.warehouse does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/controller/WarehouseController.java:[14,43] package io.swagger.v3.oas.annotations.media does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/controller/WarehouseController.java:[15,43] package io.swagger.v3.oas.annotations.media does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/controller/WarehouseController.java:[16,47] package io.swagger.v3.oas.annotations.responses does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/controller/WarehouseController.java:[17,47] package io.swagger.v3.oas.annotations.responses does not exist
+[ERROR] /project/src/main/java/com/yas/inventory/controller/WarehouseController.java:[40,32] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/inventory/controller/WarehouseController.java:[48,27] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/inventory/controller/WarehouseController.java:[57,32] cannot find symbol
+
+=== EXCEPTIONS/STACK TRACES ===
+Error: No class files generated
+
+=== ERROR COUNTS ===
+Missing packages:    55
+Cannot find symbol:  45
+
+=== MISSING PACKAGES (unique) ===
+package com.yas.commonlibrary.exception does not exist
+package com.yas.commonlibrary.model does not exist
+package com.yas.inventory.viewmodel.address does not exist
+package com.yas.inventory.viewmodel.error does not exist
+package com.yas.inventory.viewmodel.product does not exist
+package com.yas.inventory.viewmodel.stock does not exist
+package com.yas.inventory.viewmodel.stockhistory does not exist
+package com.yas.inventory.viewmodel.warehouse does not exist
+package io.github.resilience4j.circuitbreaker.annotation does not exist
+package io.github.resilience4j.retry.annotation does not exist
+package io.swagger.v3.oas.annotations.media does not exist
+package io.swagger.v3.oas.annotations.responses does not exist
+package org.springframework.boot.persistence.autoconfigure does not exist
+package org.springframework.security.oauth2.jwt does not exist
+package org.springframework.security.oauth2.server.resource.authentication does not exist
+

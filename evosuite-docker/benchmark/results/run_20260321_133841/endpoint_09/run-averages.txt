@@ -1,0 +1,60 @@
+============================================================
+ENDPOINT 9 - AGGREGATED RESULTS
+============================================================
+
+Aggregation Timestamp: 2026-03-21T20:43:38.047152Z
+
+EXECUTION SUMMARY
+----------------------------------------
+Total Runs:      3
+Successful:      0
+Failed:          3
+Success Rate:    0.0%
+Timed Out:       0
+Hung Up:         0
+
+ERROR SUMMARY
+----------------------------------------
+Primary Error:   NO_CLASS_FILES
+Error Types:
+  - NO_CLASS_FILES: 3
+Avg Compilation Errors: 100.0
+
+Sample Error Messages:
+  • No class files generated - compilation failed: [ERROR] /project/src/main/java/com/yas/product/model/...
+
+GENERATION TIME (seconds)
+----------------------------------------
+Average:         6.6415
+Min:             6.0186
+Max:             7.7678
+Std Dev:         0.9773
+
+CPU USAGE (%)
+----------------------------------------
+Average:         93.5933
+Min:             N/A
+Max:             280.78
+Std Dev:         162.1084
+
+MEMORY USAGE (MB)
+----------------------------------------
+Average:         165.3667
+Min:             N/A
+Max:             496.1
+Std Dev:         286.4235
+
+TESTS GENERATED
+----------------------------------------
+Average:         0.0
+Total:           0
+
+INDIVIDUAL RUNS
+----------------------------------------
+Run    Time(s)    CPU(%)     Mem(MB)    Tests    Exit   Error
+----------------------------------------------------------------------
+1      7.8        280.8      496        0        1      NO_CLASS_FILES
+2      6.1        N/A        N/A        0        1      NO_CLASS_FILES
+3      6.0        N/A        N/A        0        1      NO_CLASS_FILES
+
+============================================================

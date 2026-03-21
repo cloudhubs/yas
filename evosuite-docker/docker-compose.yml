@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  # EvoSuite test generator
+  evosuite:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: evosuite-yas:1.2.0
+    volumes:
+      - ..:/workspace
+      - maven-cache:/root/.m2
+    working_dir: /workspace
+    environment:
+      - SEARCH_BUDGET=${SEARCH_BUDGET:-120}
+      - CORES=${CORES:-4}
+
+  # Maven with Java 11 for cross-compilation
+  maven-java11:
+    image: maven:3.8.6-eclipse-temurin-11
+    volumes:
+      - ..:/workspace
+      - maven-cache:/root/.m2
+    working_dir: /workspace
+    environment:
+      - MAVEN_OPTS=-Xmx2g
+
+  # Compile a specific service with Java 11
+  compile:
+    image: maven:3.8.6-eclipse-temurin-11
+    volumes:
+      - ..:/workspace
+      - maven-cache:/root/.m2
+    working_dir: /workspace/${SERVICE:-product}
+    command: >
+      mvn clean compile -DskipTests
+      -Dmaven.compiler.source=11
+      -Dmaven.compiler.target=11
+      -Dmaven.compiler.release=11
+    environment:
+      - MAVEN_OPTS=-Xmx2g
+
+volumes:
+  maven-cache:
+    name: evosuite-maven-java11

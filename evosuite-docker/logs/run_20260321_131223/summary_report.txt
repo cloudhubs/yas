@@ -1,0 +1,65 @@
+=============================================
+EvoSuite Endpoint Test Summary Report
+=============================================
+
+Run Timestamp:    20260321_131223
+Total Duration:   37 seconds (0 min 37 sec)
+Search Budget:    60 seconds per endpoint
+
+=============================================
+Results
+=============================================
+
+Total Endpoints:  10
+Successful:       0
+Failed:           10
+
+--- Failed Tests ---
+  ✗ 01_GET_backoffice_ratings_latest_count
+  ✗ 02_GET_storefront_customer_profile
+  ✗ 03_GET_storefront_cart_items
+  ✗ 04_POST_backoffice_products
+  ✗ 05_POST_storefront_ratings
+  ✗ 06_POST_storefront_sampledata
+  ✗ 07_DELETE_backoffice_ratings_id
+  ✗ 08_DELETE_backoffice_warehouses_id
+  ✗ 09_PUT_backoffice_products_subtract-quantity
+  ✗ 10_PUT_backoffice_state-or-provinces_id
+
+=============================================
+Log Files
+=============================================
+
+Directory: /Users/rfnmac/Documents/research/ai-test/yas/evosuite-docker/logs/run_20260321_131223
+
+  - 01_GET_backoffice_ratings_latest_count.log
+  - 02_GET_storefront_customer_profile.log
+  - 03_GET_storefront_cart_items.log
+  - 04_POST_backoffice_products.log
+  - 05_POST_storefront_ratings.log
+  - 06_POST_storefront_sampledata.log
+  - 07_DELETE_backoffice_ratings_id.log
+  - 08_DELETE_backoffice_warehouses_id.log
+  - 09_PUT_backoffice_products_subtract-quantity.log
+  - 10_PUT_backoffice_state-or-provinces_id.log
+
+=============================================
+Notes for Research
+=============================================
+
+EvoSuite Architectural Limitation:
+  EvoSuite uses a master-client RMI architecture where the master
+  process cannot deserialize Spring framework types (HttpEntity,
+  ResponseEntity, etc.) because they are not in its classpath.
+  This causes test generation to fail for most Spring controllers.
+
+Expected Behavior:
+  - Controllers will likely show 0 generated tests
+  - Errors like 'NoClassDefFoundError: org/springframework/http/HttpEntity'
+    are expected and documented in the log files
+
+Cross-Compilation Note (YAS-specific):
+  - YAS uses Java 21 and Spring Boot 4.0.2
+  - EvoSuite targets Java 11 maximum
+  - Cross-compilation gap is larger than train-ticket (Java 17)
+

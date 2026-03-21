@@ -1,0 +1,18 @@
+{
+    "endpoint_id": 2,
+    "run_number": 2,
+    "generation_status": "FAILED",
+    "exit_code": 1,
+    "timed_out": false,
+    "hung_up": false,
+    "error_type": "NO_CLASS_FILES",
+    "error_message": "No class files generated - compilation failed: [ERROR] /project/src/main/java/com/yas/customer/controller/UserAddressController.java:[4,42] package com.yas.customer.viewmodel.address does not exist [ERROR] /project/src/main/java/com/yas/customer/controller/UserAddressController.java:[5,42] package com.yas.customer.viewmodel.address does not exist [ERROR] /project/src/main/java/com/yas/customer/controller/UserAddressController.java:[6,42] package com.yas.customer.viewmodel.address does not exist ",
+    "runs_without_error": false,
+    "threw_errors": true,
+    "error_counts": {
+        "total_errors": 100,
+        "missing_packages": 53,
+        "cannot_find_symbol": 46
+    },
+    "error_details_file": "error-details.txt"
+}

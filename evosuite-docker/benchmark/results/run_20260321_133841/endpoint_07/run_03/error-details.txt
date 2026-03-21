@@ -1,0 +1,87 @@
+=============================================
+DETAILED ERROR REPORT
+=============================================
+
+Endpoint ID:   7
+Run Number:    3
+Error Type:    NO_CLASS_FILES
+
+=== MAVEN/COMPILATION ERRORS ===
+[ERROR] /project/src/main/java/com/yas/rating/config/DatabaseAutoConfig.java:[4,58] package org.springframework.boot.persistence.autoconfigure does not exist
+[ERROR] /project/src/main/java/com/yas/rating/config/DatabaseAutoConfig.java:[15,2] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/rating/service/RatingService.java:[3,39] package com.yas.commonlibrary.exception does not exist
+[ERROR] /project/src/main/java/com/yas/rating/service/RatingService.java:[4,39] package com.yas.commonlibrary.exception does not exist
+[ERROR] /project/src/main/java/com/yas/rating/service/RatingService.java:[5,39] package com.yas.commonlibrary.exception does not exist
+[ERROR] /project/src/main/java/com/yas/rating/service/RatingService.java:[10,32] package com.yas.rating.viewmodel does not exist
+[ERROR] /project/src/main/java/com/yas/rating/service/RatingService.java:[11,32] package com.yas.rating.viewmodel does not exist
+[ERROR] /project/src/main/java/com/yas/rating/service/RatingService.java:[12,32] package com.yas.rating.viewmodel does not exist
+[ERROR] /project/src/main/java/com/yas/rating/service/RatingService.java:[13,32] package com.yas.rating.viewmodel does not exist
+[ERROR] /project/src/main/java/com/yas/rating/service/RatingService.java:[14,32] package com.yas.rating.viewmodel does not exist
+[ERROR] /project/src/main/java/com/yas/rating/model/Rating.java:[9,35] package com.yas.commonlibrary.model does not exist
+[ERROR] /project/src/main/java/com/yas/rating/model/Rating.java:[24,29] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/rating/service/CustomerService.java:[3,29] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/rating/service/CustomerService.java:[4,32] package com.yas.rating.viewmodel does not exist
+[ERROR] /project/src/main/java/com/yas/rating/service/CustomerService.java:[5,56] package io.github.resilience4j.circuitbreaker.annotation does not exist
+[ERROR] /project/src/main/java/com/yas/rating/service/CustomerService.java:[6,47] package io.github.resilience4j.retry.annotation does not exist
+[ERROR] /project/src/main/java/com/yas/rating/service/CustomerService.java:[10,47] package org.springframework.security.oauth2.jwt does not exist
+[ERROR] /project/src/main/java/com/yas/rating/service/CustomerService.java:[12,38] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/rating/service/OrderService.java:[3,29] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/rating/service/OrderService.java:[4,32] package com.yas.rating.viewmodel does not exist
+[ERROR] /project/src/main/java/com/yas/rating/service/OrderService.java:[5,56] package io.github.resilience4j.circuitbreaker.annotation does not exist
+[ERROR] /project/src/main/java/com/yas/rating/service/OrderService.java:[6,47] package io.github.resilience4j.retry.annotation does not exist
+[ERROR] /project/src/main/java/com/yas/rating/service/OrderService.java:[10,47] package org.springframework.security.oauth2.jwt does not exist
+[ERROR] /project/src/main/java/com/yas/rating/service/OrderService.java:[12,38] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/rating/service/RatingService.java:[47,12] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/rating/service/RatingService.java:[59,12] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/rating/service/RatingService.java:[76,17] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/rating/service/RatingService.java:[94,34] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/rating/service/RatingService.java:[94,12] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/rating/service/RatingService.java:[125,12] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/rating/service/OrderService.java:[19,19] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/rating/service/OrderService.java:[20,19] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/rating/service/OrderService.java:[24,12] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/rating/service/OrderService.java:[41,12] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/rating/service/OrderService.java:[16,1] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/rating/service/CustomerService.java:[19,19] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/rating/service/CustomerService.java:[20,19] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/rating/service/CustomerService.java:[24,12] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/rating/service/CustomerService.java:[40,15] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/rating/service/CustomerService.java:[16,1] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/rating/config/RestClientConfig.java:[7,38] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/rating/config/RestClientConfig.java:[13,47] package RestClient does not exist
+[ERROR] /project/src/main/java/com/yas/rating/config/RestClientConfig.java:[13,12] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/rating/utils/AuthenticationUtils.java:[3,39] package com.yas.commonlibrary.exception does not exist
+[ERROR] /project/src/main/java/com/yas/rating/utils/AuthenticationUtils.java:[7,74] package org.springframework.security.oauth2.server.resource.authentication does not exist
+[ERROR] /project/src/main/java/com/yas/rating/controller/RatingController.java:[4,32] package com.yas.rating.viewmodel does not exist
+[ERROR] /project/src/main/java/com/yas/rating/controller/RatingController.java:[5,32] package com.yas.rating.viewmodel does not exist
+[ERROR] /project/src/main/java/com/yas/rating/controller/RatingController.java:[6,32] package com.yas.rating.viewmodel does not exist
+[ERROR] /project/src/main/java/com/yas/rating/controller/RatingController.java:[7,32] package com.yas.rating.viewmodel does not exist
+[ERROR] /project/src/main/java/com/yas/rating/controller/RatingController.java:[31,27] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/rating/controller/RatingController.java:[51,32] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/rating/controller/RatingController.java:[56,27] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/rating/controller/RatingController.java:[61,27] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/rating/controller/RatingController.java:[70,70] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/rating/controller/RatingController.java:[70,27] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/rating/service/OrderService.java:[22,6] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/rating/service/OrderService.java:[23,6] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/rating/service/CustomerService.java:[22,6] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/rating/service/CustomerService.java:[23,6] cannot find symbol
+
+=== EXCEPTIONS/STACK TRACES ===
+Error: No class files generated
+
+=== ERROR COUNTS ===
+Missing packages:    25
+Cannot find symbol:  34
+
+=== MISSING PACKAGES (unique) ===
+package com.yas.commonlibrary.exception does not exist
+package com.yas.commonlibrary.model does not exist
+package com.yas.rating.viewmodel does not exist
+package io.github.resilience4j.circuitbreaker.annotation does not exist
+package io.github.resilience4j.retry.annotation does not exist
+package org.springframework.boot.persistence.autoconfigure does not exist
+package org.springframework.security.oauth2.jwt does not exist
+package org.springframework.security.oauth2.server.resource.authentication does not exist
+package RestClient does not exist
+

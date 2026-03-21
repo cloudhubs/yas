@@ -1,0 +1,11 @@
+endpoint_id,service,endpoint,http_method,controller_class,method_name,path_params,has_request_body,expected_status_codes,authorization
+1,rating,backoffice/ratings/latest/{count},GET,com.yas.rating.controller.RatingController,,count,false,"200","USER"
+2,customer,storefront/customer/profile,GET,com.yas.customer.controller.CustomerController,,,false,"200","USER"
+3,cart,storefront/cart/items,GET,com.yas.cart.controller.CartItemController,,,false,"200","USER"
+4,product,backoffice/products,POST,com.yas.product.controller.ProductController,,,true,"200","USER"
+5,rating,storefront/ratings,POST,com.yas.rating.controller.RatingController,,,true,"200","USER"
+6,sampledata,storefront/sampledata,POST,com.yas.sampledata.controller.SampleDataController,,,true,"200","USER"
+7,rating,backoffice/ratings/{id},DELETE,com.yas.rating.controller.RatingController,,id,false,"200","USER"
+8,inventory,backoffice/warehouses/{id},DELETE,com.yas.inventory.controller.WarehouseController,,id,false,"200","USER"
+9,product,backoffice/products/subtract-quantity,PUT,com.yas.product.controller.ProductController,,,true,"200","USER"
+10,location,backoffice/state-or-provinces/{id},PUT,com.yas.location.controller.StateOrProvinceController,,id,true,"200","USER"

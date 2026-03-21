@@ -1,0 +1,18 @@
+{
+    "endpoint_id": 6,
+    "run_number": 2,
+    "generation_status": "FAILED",
+    "exit_code": 1,
+    "timed_out": false,
+    "hung_up": false,
+    "error_type": "NO_CLASS_FILES",
+    "error_message": "No class files generated - compilation failed: [ERROR] /project/src/main/java/com/yas/sampledata/controller/SampleDataController.java:[4,36] package com.yas.sampledata.viewmodel does not exist [ERROR] /project/src/main/java/com/yas/sampledata/controller/SampleDataController.java:[5,36] package com.yas.sampledata.viewmodel does not exist [ERROR] /project/src/main/java/com/yas/sampledata/controller/SampleDataController.java:[6,37] package io.swagger.v3.oas.annotations does not exist  ",
+    "runs_without_error": false,
+    "threw_errors": true,
+    "error_counts": {
+        "total_errors": 23,
+        "missing_packages": 8,
+        "cannot_find_symbol": 15
+    },
+    "error_details_file": "error-details.txt"
+}

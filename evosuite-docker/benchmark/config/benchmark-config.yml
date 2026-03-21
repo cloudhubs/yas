@@ -1,0 +1,111 @@
+# EvoSuite Benchmarking Configuration for YAS
+# For research paper: Automated Endpoint Test Generation Comparison
+
+benchmark:
+  name: "EvoSuite Endpoint Test Generation Benchmark"
+  version: "1.0.0"
+  description: "Benchmark framework for evaluating EvoSuite test generation on REST API endpoints"
+  project: "YAS (Yet Another Shop)"
+
+# Execution settings
+execution:
+  runs_per_endpoint: 3              # Number of times to run each endpoint (default: 3)
+  search_budget_seconds: 60         # EvoSuite search budget per class
+  timeout_multiplier: 2.0           # Timeout = budget * multiplier
+  hang_detection_seconds: 60        # Flag as hung if no output for this duration
+  parallel_execution: false         # Run endpoints sequentially (one at a time)
+
+# EvoSuite configuration
+evosuite:
+  version: "1.2.0"
+  docker_image: "evosuite-yas:1.2.0"
+  algorithm: "DynaMOSA"
+  criterion: "LINE:BRANCH:EXCEPTION:WEAKMUTATION:OUTPUT:METHOD"
+  assertion_strategy: "all"
+  minimize: true
+  java_version: 11                  # Cross-compilation target
+
+# Resource monitoring settings
+resource_monitoring:
+  enabled: true
+  sample_interval_seconds: 5        # Docker stats sampling interval
+  docker_stats: true
+  collect_cpu: true
+  collect_memory: true
+  collect_time: true
+
+# Test execution settings (for generated tests)
+test_execution:
+  enabled: true
+  runs_per_test: 3                  # Number of runs for flakiness calculation
+  junit_version: "4"
+  timeout_per_test_seconds: 30
+
+# Output format settings
+output:
+  format: "csv"                     # Primary output format
+  csv_delimiter: ","
+  na_value: "N/A"
+  boolean_true: "TRUE"
+  boolean_false: "FALSE"
+  timestamp_format: "ISO8601"       # YYYY-MM-DDTHH:MM:SSZ
+
+# Metrics to collect
+metrics:
+  semantic_validity:
+    - targets_correct_endpoint
+    - asserts_http_status
+    - correct_comparator
+    - inline_with_scenarios
+    - missing_url_params
+    - missing_request_body
+
+  semantic_quality:
+    - test_coverage
+    - assertions_meaningful
+    - boundary_conditions
+    - verifies_authorization
+    - invalid_url_params
+    - invalid_request_body
+
+  runtime_validity:
+    - runs_without_error
+    - threw_errors
+    - runtime_anomalies
+    - timed_out
+    - hung_up
+    - cost_time
+    - cost_cpu
+    - cost_memory
+
+  runtime_quality:
+    - test_flakiness
+    - resource_memory
+    - resource_cpu
+
+  performance_quality:
+    - mean_exec_time
+    - exec_time_std_dev
+
+# Error classification patterns
+error_patterns:
+  RMI_SERIALIZATION:
+    - "NoClassDefFoundError.*HttpEntity"
+    - "NoClassDefFoundError.*ResponseEntity"
+    - "NoClassDefFoundError.*HttpHeaders"
+    - "ClassNotFoundException.*springframework"
+  COMPILATION:
+    - "Compilation failed"
+    - "cannot find symbol"
+    - "error: "
+  TIMEOUT:
+    - "Timeout reached"
+    - "Search budget exhausted"
+  OOM:
+    - "OutOfMemoryError"
+    - "Java heap space"
+    - "GC overhead limit exceeded"
+  RMI_CONNECTION:
+    - "Connection refused"
+    - "RMI"
+    - "RemoteException"

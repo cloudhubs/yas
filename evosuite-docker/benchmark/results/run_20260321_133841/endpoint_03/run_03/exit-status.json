@@ -1,0 +1,18 @@
+{
+    "endpoint_id": 3,
+    "run_number": 3,
+    "generation_status": "FAILED",
+    "exit_code": 1,
+    "timed_out": false,
+    "hung_up": false,
+    "error_type": "NO_CLASS_FILES",
+    "error_message": "No class files generated - compilation failed: [ERROR] /project/src/main/java/com/yas/cart/model/CartItem.java:[8,35] package com.yas.commonlibrary.model does not exist [ERROR] /project/src/main/java/com/yas/cart/model/CartItem.java:[22,31] cannot find symbol [ERROR] /project/src/main/java/com/yas/cart/mapper/CartItemMapper.java:[4,30] package com.yas.cart.viewmodel does not exist  ",
+    "runs_without_error": false,
+    "threw_errors": true,
+    "error_counts": {
+        "total_errors": 56,
+        "missing_packages": 21,
+        "cannot_find_symbol": 35
+    },
+    "error_details_file": "error-details.txt"
+}

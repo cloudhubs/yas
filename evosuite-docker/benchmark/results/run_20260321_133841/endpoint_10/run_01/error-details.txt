@@ -1,0 +1,129 @@
+=============================================
+DETAILED ERROR REPORT
+=============================================
+
+Endpoint ID:   10
+Run Number:    1
+Error Type:    NO_CLASS_FILES
+
+=== MAVEN/COMPILATION ERRORS ===
+[ERROR] /project/src/main/java/com/yas/location/controller/StateOrProvinceController.java:[6,40] package com.yas.location.viewmodel.error does not exist
+[ERROR] /project/src/main/java/com/yas/location/controller/StateOrProvinceController.java:[7,50] package com.yas.location.viewmodel.stateorprovince does not exist
+[ERROR] /project/src/main/java/com/yas/location/controller/StateOrProvinceController.java:[8,50] package com.yas.location.viewmodel.stateorprovince does not exist
+[ERROR] /project/src/main/java/com/yas/location/controller/StateOrProvinceController.java:[9,50] package com.yas.location.viewmodel.stateorprovince does not exist
+[ERROR] /project/src/main/java/com/yas/location/controller/StateOrProvinceController.java:[10,50] package com.yas.location.viewmodel.stateorprovince does not exist
+[ERROR] /project/src/main/java/com/yas/location/controller/StateOrProvinceController.java:[11,43] package io.swagger.v3.oas.annotations.media does not exist
+[ERROR] /project/src/main/java/com/yas/location/controller/StateOrProvinceController.java:[12,43] package io.swagger.v3.oas.annotations.media does not exist
+[ERROR] /project/src/main/java/com/yas/location/controller/StateOrProvinceController.java:[13,47] package io.swagger.v3.oas.annotations.responses does not exist
+[ERROR] /project/src/main/java/com/yas/location/controller/StateOrProvinceController.java:[14,47] package io.swagger.v3.oas.annotations.responses does not exist
+[ERROR] /project/src/main/java/com/yas/location/service/StateOrProvinceService.java:[3,39] package com.yas.commonlibrary.exception does not exist
+[ERROR] /project/src/main/java/com/yas/location/service/StateOrProvinceService.java:[4,39] package com.yas.commonlibrary.exception does not exist
+[ERROR] /project/src/main/java/com/yas/location/service/StateOrProvinceService.java:[10,50] package com.yas.location.viewmodel.stateorprovince does not exist
+[ERROR] /project/src/main/java/com/yas/location/service/StateOrProvinceService.java:[11,50] package com.yas.location.viewmodel.stateorprovince does not exist
+[ERROR] /project/src/main/java/com/yas/location/service/StateOrProvinceService.java:[12,50] package com.yas.location.viewmodel.stateorprovince does not exist
+[ERROR] /project/src/main/java/com/yas/location/service/StateOrProvinceService.java:[13,50] package com.yas.location.viewmodel.stateorprovince does not exist
+[ERROR] /project/src/main/java/com/yas/location/controller/StateOrProvinceController.java:[48,27] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/location/controller/StateOrProvinceController.java:[59,32] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/location/controller/StateOrProvinceController.java:[71,27] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/location/controller/StateOrProvinceController.java:[87,32] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/location/controller/StateOrProvinceController.java:[105,35] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/location/controller/StateOrProvinceController.java:[104,27] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/location/controller/StateOrProvinceController.java:[131,61] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/location/model/StateOrProvince.java:[13,35] package com.yas.commonlibrary.model does not exist
+[ERROR] /project/src/main/java/com/yas/location/model/StateOrProvince.java:[29,38] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/location/model/Country.java:[13,35] package com.yas.commonlibrary.model does not exist
+[ERROR] /project/src/main/java/com/yas/location/model/Country.java:[29,30] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/location/mapper/StateOrProvinceMapper.java:[4,50] package com.yas.location.viewmodel.stateorprovince does not exist
+[ERROR] /project/src/main/java/com/yas/location/service/StateOrProvinceService.java:[44,56] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/location/service/StateOrProvinceService.java:[73,45] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/location/service/StateOrProvinceService.java:[104,12] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/location/service/StateOrProvinceService.java:[112,17] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/location/service/StateOrProvinceService.java:[122,17] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/location/service/StateOrProvinceService.java:[139,12] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/location/service/StateOrProvinceService.java:[161,17] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/location/mapper/StateOrProvinceMapper.java:[14,5] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/location/model/Address.java:[12,35] package com.yas.commonlibrary.model does not exist
+[ERROR] /project/src/main/java/com/yas/location/model/Address.java:[28,30] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/location/model/District.java:[12,35] package com.yas.commonlibrary.model does not exist
+[ERROR] /project/src/main/java/com/yas/location/model/District.java:[28,31] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/location/repository/DistrictRepository.java:[4,43] package com.yas.location.viewmodel.district does not exist
+[ERROR] /project/src/main/java/com/yas/location/repository/DistrictRepository.java:[9,10] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/location/controller/CountryController.java:[6,42] package com.yas.location.viewmodel.country does not exist
+[ERROR] /project/src/main/java/com/yas/location/controller/CountryController.java:[7,42] package com.yas.location.viewmodel.country does not exist
+[ERROR] /project/src/main/java/com/yas/location/controller/CountryController.java:[8,42] package com.yas.location.viewmodel.country does not exist
+[ERROR] /project/src/main/java/com/yas/location/controller/CountryController.java:[9,40] package com.yas.location.viewmodel.error does not exist
+[ERROR] /project/src/main/java/com/yas/location/controller/CountryController.java:[10,43] package io.swagger.v3.oas.annotations.media does not exist
+[ERROR] /project/src/main/java/com/yas/location/controller/CountryController.java:[11,43] package io.swagger.v3.oas.annotations.media does not exist
+[ERROR] /project/src/main/java/com/yas/location/controller/CountryController.java:[12,47] package io.swagger.v3.oas.annotations.responses does not exist
+[ERROR] /project/src/main/java/com/yas/location/controller/CountryController.java:[13,47] package io.swagger.v3.oas.annotations.responses does not exist
+[ERROR] /project/src/main/java/com/yas/location/service/CountryService.java:[3,39] package com.yas.commonlibrary.exception does not exist
+[ERROR] /project/src/main/java/com/yas/location/service/CountryService.java:[4,39] package com.yas.commonlibrary.exception does not exist
+[ERROR] /project/src/main/java/com/yas/location/service/CountryService.java:[9,42] package com.yas.location.viewmodel.country does not exist
+[ERROR] /project/src/main/java/com/yas/location/service/CountryService.java:[10,42] package com.yas.location.viewmodel.country does not exist
+[ERROR] /project/src/main/java/com/yas/location/service/CountryService.java:[11,42] package com.yas.location.viewmodel.country does not exist
+[ERROR] /project/src/main/java/com/yas/location/controller/CountryController.java:[39,27] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/location/controller/CountryController.java:[48,32] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/location/controller/CountryController.java:[58,27] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/location/controller/CountryController.java:[69,35] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/location/controller/CountryController.java:[68,27] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/location/controller/CountryController.java:[89,73] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/location/mapper/CountryMapper.java:[4,42] package com.yas.location.viewmodel.country does not exist
+[ERROR] /project/src/main/java/com/yas/location/mapper/CountryMapper.java:[5,42] package com.yas.location.viewmodel.country does not exist
+[ERROR] /project/src/main/java/com/yas/location/service/CountryService.java:[34,17] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/location/service/CountryService.java:[43,12] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/location/service/CountryService.java:[52,33] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/location/service/CountryService.java:[63,30] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/location/service/CountryService.java:[89,12] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/location/mapper/CountryMapper.java:[24,47] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/location/mapper/CountryMapper.java:[27,76] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/location/mapper/CountryMapper.java:[29,5] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/location/service/AddressService.java:[3,39] package com.yas.commonlibrary.exception does not exist
+[ERROR] /project/src/main/java/com/yas/location/service/AddressService.java:[11,42] package com.yas.location.viewmodel.address does not exist
+[ERROR] /project/src/main/java/com/yas/location/service/AddressService.java:[12,42] package com.yas.location.viewmodel.address does not exist
+[ERROR] /project/src/main/java/com/yas/location/service/AddressService.java:[13,42] package com.yas.location.viewmodel.address does not exist
+[ERROR] /project/src/main/java/com/yas/location/service/AddressService.java:[29,39] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/location/service/AddressService.java:[29,12] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/location/service/AddressService.java:[39,40] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/location/service/AddressService.java:[56,17] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/location/service/AddressService.java:[61,12] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/location/controller/StateOrProvinceStoreFrontController.java:[5,40] package com.yas.location.viewmodel.error does not exist
+[ERROR] /project/src/main/java/com/yas/location/controller/StateOrProvinceStoreFrontController.java:[6,50] package com.yas.location.viewmodel.stateorprovince does not exist
+[ERROR] /project/src/main/java/com/yas/location/controller/StateOrProvinceStoreFrontController.java:[7,43] package io.swagger.v3.oas.annotations.media does not exist
+[ERROR] /project/src/main/java/com/yas/location/controller/StateOrProvinceStoreFrontController.java:[8,43] package io.swagger.v3.oas.annotations.media does not exist
+[ERROR] /project/src/main/java/com/yas/location/controller/StateOrProvinceStoreFrontController.java:[9,47] package io.swagger.v3.oas.annotations.responses does not exist
+[ERROR] /project/src/main/java/com/yas/location/controller/StateOrProvinceStoreFrontController.java:[10,47] package io.swagger.v3.oas.annotations.responses does not exist
+[ERROR] /project/src/main/java/com/yas/location/controller/StateOrProvinceStoreFrontController.java:[31,32] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/location/controller/CountryStorefrontController.java:[5,42] package com.yas.location.viewmodel.country does not exist
+[ERROR] /project/src/main/java/com/yas/location/controller/CountryStorefrontController.java:[20,32] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/location/controller/DistrictStorefrontController.java:[4,43] package com.yas.location.viewmodel.district does not exist
+[ERROR] /project/src/main/java/com/yas/location/service/DistrictService.java:[4,43] package com.yas.location.viewmodel.district does not exist
+[ERROR] /project/src/main/java/com/yas/location/controller/DistrictStorefrontController.java:[18,32] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/location/service/DistrictService.java:[16,17] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/location/config/DatabaseAutoConfig.java:[4,58] package org.springframework.boot.persistence.autoconfigure does not exist
+[ERROR] /project/src/main/java/com/yas/location/config/DatabaseAutoConfig.java:[15,2] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/location/controller/AddressController.java:[4,42] package com.yas.location.viewmodel.address does not exist
+[ERROR] /project/src/main/java/com/yas/location/controller/AddressController.java:[5,42] package com.yas.location.viewmodel.address does not exist
+[ERROR] /project/src/main/java/com/yas/location/controller/AddressController.java:[6,42] package com.yas.location.viewmodel.address does not exist
+[ERROR] /project/src/main/java/com/yas/location/controller/AddressController.java:[27,75] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/location/controller/AddressController.java:[27,27] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/location/controller/AddressController.java:[32,90] cannot find symbol
+
+=== EXCEPTIONS/STACK TRACES ===
+Error: No class files generated
+
+=== ERROR COUNTS ===
+Missing packages:    53
+Cannot find symbol:  47
+
+=== MISSING PACKAGES (unique) ===
+package com.yas.commonlibrary.exception does not exist
+package com.yas.commonlibrary.model does not exist
+package com.yas.location.viewmodel.address does not exist
+package com.yas.location.viewmodel.country does not exist
+package com.yas.location.viewmodel.district does not exist
+package com.yas.location.viewmodel.error does not exist
+package com.yas.location.viewmodel.stateorprovince does not exist
+package io.swagger.v3.oas.annotations.media does not exist
+package io.swagger.v3.oas.annotations.responses does not exist
+package org.springframework.boot.persistence.autoconfigure does not exist
+

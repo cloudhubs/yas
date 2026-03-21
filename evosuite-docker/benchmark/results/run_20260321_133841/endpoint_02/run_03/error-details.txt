@@ -1,0 +1,137 @@
+=============================================
+DETAILED ERROR REPORT
+=============================================
+
+Endpoint ID:   2
+Run Number:    3
+Error Type:    NO_CLASS_FILES
+
+=== MAVEN/COMPILATION ERRORS ===
+[ERROR] /project/src/main/java/com/yas/customer/controller/UserAddressController.java:[4,42] package com.yas.customer.viewmodel.address does not exist
+[ERROR] /project/src/main/java/com/yas/customer/controller/UserAddressController.java:[5,42] package com.yas.customer.viewmodel.address does not exist
+[ERROR] /project/src/main/java/com/yas/customer/controller/UserAddressController.java:[6,42] package com.yas.customer.viewmodel.address does not exist
+[ERROR] /project/src/main/java/com/yas/customer/controller/UserAddressController.java:[7,46] package com.yas.customer.viewmodel.useraddress does not exist
+[ERROR] /project/src/main/java/com/yas/customer/service/UserAddressService.java:[3,39] package com.yas.commonlibrary.exception does not exist
+[ERROR] /project/src/main/java/com/yas/customer/service/UserAddressService.java:[4,39] package com.yas.commonlibrary.exception does not exist
+[ERROR] /project/src/main/java/com/yas/customer/service/UserAddressService.java:[8,42] package com.yas.customer.viewmodel.address does not exist
+[ERROR] /project/src/main/java/com/yas/customer/service/UserAddressService.java:[9,42] package com.yas.customer.viewmodel.address does not exist
+[ERROR] /project/src/main/java/com/yas/customer/service/UserAddressService.java:[10,42] package com.yas.customer.viewmodel.address does not exist
+[ERROR] /project/src/main/java/com/yas/customer/service/UserAddressService.java:[11,42] package com.yas.customer.viewmodel.address does not exist
+[ERROR] /project/src/main/java/com/yas/customer/service/UserAddressService.java:[12,46] package com.yas.customer.viewmodel.useraddress does not exist
+[ERROR] /project/src/main/java/com/yas/customer/controller/UserAddressController.java:[27,32] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/customer/controller/UserAddressController.java:[32,27] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/customer/controller/UserAddressController.java:[37,76] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/customer/controller/UserAddressController.java:[37,27] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/customer/model/UserAddress.java:[9,35] package com.yas.commonlibrary.model does not exist
+[ERROR] /project/src/main/java/com/yas/customer/model/UserAddress.java:[24,34] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/customer/service/LocationService.java:[4,31] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/customer/service/LocationService.java:[5,42] package com.yas.customer.viewmodel.address does not exist
+[ERROR] /project/src/main/java/com/yas/customer/service/LocationService.java:[6,42] package com.yas.customer.viewmodel.address does not exist
+[ERROR] /project/src/main/java/com/yas/customer/service/LocationService.java:[7,42] package com.yas.customer.viewmodel.address does not exist
+[ERROR] /project/src/main/java/com/yas/customer/service/LocationService.java:[8,56] package io.github.resilience4j.circuitbreaker.annotation does not exist
+[ERROR] /project/src/main/java/com/yas/customer/service/LocationService.java:[9,47] package io.github.resilience4j.retry.annotation does not exist
+[ERROR] /project/src/main/java/com/yas/customer/service/LocationService.java:[15,47] package org.springframework.security.oauth2.jwt does not exist
+[ERROR] /project/src/main/java/com/yas/customer/service/LocationService.java:[17,38] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/customer/service/UserAddressService.java:[32,17] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/customer/service/UserAddressService.java:[56,12] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/customer/service/UserAddressService.java:[68,40] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/customer/service/UserAddressService.java:[68,12] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/customer/service/LocationService.java:[24,19] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/customer/service/LocationService.java:[25,19] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/customer/service/LocationService.java:[29,17] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/customer/service/LocationService.java:[49,12] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/customer/service/LocationService.java:[67,36] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/customer/service/LocationService.java:[67,12] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/customer/service/LocationService.java:[84,18] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/customer/service/LocationService.java:[88,13] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/customer/service/LocationService.java:[92,13] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/customer/service/LocationService.java:[21,1] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/customer/config/DatabaseAutoConfig.java:[4,58] package org.springframework.boot.persistence.autoconfigure does not exist
+[ERROR] /project/src/main/java/com/yas/customer/config/DatabaseAutoConfig.java:[15,2] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/customer/config/KeycloakClientConfig.java:[3,27] package org.keycloak does not exist
+[ERROR] /project/src/main/java/com/yas/customer/config/KeycloakClientConfig.java:[3,1] static import only from classes and interfaces
+[ERROR] /project/src/main/java/com/yas/customer/config/KeycloakClientConfig.java:[5,33] package org.keycloak.admin.client does not exist
+[ERROR] /project/src/main/java/com/yas/customer/config/KeycloakClientConfig.java:[6,33] package org.keycloak.admin.client does not exist
+[ERROR] /project/src/main/java/com/yas/customer/config/KeycloakClientConfig.java:[19,12] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/customer/service/CustomerService.java:[3,39] package com.yas.commonlibrary.exception does not exist
+[ERROR] /project/src/main/java/com/yas/customer/service/CustomerService.java:[4,39] package com.yas.commonlibrary.exception does not exist
+[ERROR] /project/src/main/java/com/yas/customer/service/CustomerService.java:[5,39] package com.yas.commonlibrary.exception does not exist
+[ERROR] /project/src/main/java/com/yas/customer/service/CustomerService.java:[6,39] package com.yas.commonlibrary.exception does not exist
+[ERROR] /project/src/main/java/com/yas/customer/service/CustomerService.java:[7,39] package com.yas.commonlibrary.exception does not exist
+[ERROR] /project/src/main/java/com/yas/customer/service/CustomerService.java:[10,43] package com.yas.customer.viewmodel.customer does not exist
+[ERROR] /project/src/main/java/com/yas/customer/service/CustomerService.java:[11,43] package com.yas.customer.viewmodel.customer does not exist
+[ERROR] /project/src/main/java/com/yas/customer/service/CustomerService.java:[12,43] package com.yas.customer.viewmodel.customer does not exist
+[ERROR] /project/src/main/java/com/yas/customer/service/CustomerService.java:[13,43] package com.yas.customer.viewmodel.customer does not exist
+[ERROR] /project/src/main/java/com/yas/customer/service/CustomerService.java:[14,43] package com.yas.customer.viewmodel.customer does not exist
+[ERROR] /project/src/main/java/com/yas/customer/service/CustomerService.java:[15,43] package com.yas.customer.viewmodel.customer does not exist
+[ERROR] /project/src/main/java/com/yas/customer/service/CustomerService.java:[16,26] package jakarta.ws.rs.core does not exist
+[ERROR] /project/src/main/java/com/yas/customer/service/CustomerService.java:[21,45] package org.apache.commons.validator.routines does not exist
+[ERROR] /project/src/main/java/com/yas/customer/service/CustomerService.java:[22,33] package org.keycloak.admin.client does not exist
+[ERROR] /project/src/main/java/com/yas/customer/service/CustomerService.java:[23,33] package org.keycloak.admin.client does not exist
+[ERROR] /project/src/main/java/com/yas/customer/service/CustomerService.java:[24,42] package org.keycloak.admin.client.resource does not exist
+[ERROR] /project/src/main/java/com/yas/customer/service/CustomerService.java:[25,42] package org.keycloak.admin.client.resource does not exist
+[ERROR] /project/src/main/java/com/yas/customer/service/CustomerService.java:[26,40] package org.keycloak.representations.idm does not exist
+[ERROR] /project/src/main/java/com/yas/customer/service/CustomerService.java:[27,40] package org.keycloak.representations.idm does not exist
+[ERROR] /project/src/main/java/com/yas/customer/service/CustomerService.java:[28,40] package org.keycloak.representations.idm does not exist
+[ERROR] /project/src/main/java/com/yas/customer/service/CustomerService.java:[37,19] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/customer/service/CustomerService.java:[40,28] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/customer/service/CustomerService.java:[45,19] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/customer/service/CustomerService.java:[53,12] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/customer/service/CustomerService.java:[69,43] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/customer/service/CustomerService.java:[97,12] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/customer/service/CustomerService.java:[115,12] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/customer/service/CustomerService.java:[126,12] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/customer/service/CustomerService.java:[162,30] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/customer/service/CustomerService.java:[162,12] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/customer/service/CustomerService.java:[195,41] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/customer/service/CustomerService.java:[201,38] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/customer/config/RestClientConfig.java:[5,38] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/customer/config/RestClientConfig.java:[11,12] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/customer/controller/CustomerController.java:[4,34] package com.yas.customer.viewmodel does not exist
+[ERROR] /project/src/main/java/com/yas/customer/controller/CustomerController.java:[5,43] package com.yas.customer.viewmodel.customer does not exist
+[ERROR] /project/src/main/java/com/yas/customer/controller/CustomerController.java:[6,43] package com.yas.customer.viewmodel.customer does not exist
+[ERROR] /project/src/main/java/com/yas/customer/controller/CustomerController.java:[7,43] package com.yas.customer.viewmodel.customer does not exist
+[ERROR] /project/src/main/java/com/yas/customer/controller/CustomerController.java:[8,43] package com.yas.customer.viewmodel.customer does not exist
+[ERROR] /project/src/main/java/com/yas/customer/controller/CustomerController.java:[9,43] package com.yas.customer.viewmodel.customer does not exist
+[ERROR] /project/src/main/java/com/yas/customer/controller/CustomerController.java:[10,43] package com.yas.customer.viewmodel.customer does not exist
+[ERROR] /project/src/main/java/com/yas/customer/controller/CustomerController.java:[11,43] package io.swagger.v3.oas.annotations.media does not exist
+[ERROR] /project/src/main/java/com/yas/customer/controller/CustomerController.java:[12,43] package io.swagger.v3.oas.annotations.media does not exist
+[ERROR] /project/src/main/java/com/yas/customer/controller/CustomerController.java:[13,47] package io.swagger.v3.oas.annotations.responses does not exist
+[ERROR] /project/src/main/java/com/yas/customer/controller/CustomerController.java:[14,47] package io.swagger.v3.oas.annotations.responses does not exist
+[ERROR] /project/src/main/java/com/yas/customer/controller/CustomerController.java:[41,27] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/customer/controller/CustomerController.java:[56,27] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/customer/controller/CustomerController.java:[70,27] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/customer/controller/CustomerController.java:[83,22] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/customer/controller/CustomerController.java:[108,29] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/customer/controller/CustomerController.java:[107,27] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/customer/controller/CustomerController.java:[123,27] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/customer/controller/CustomerController.java:[134,12] cannot find symbol
+[ERROR] /project/src/main/java/com/yas/customer/service/LocationService.java:[27,6] cannot find symbol
+
+=== EXCEPTIONS/STACK TRACES ===
+Error: No class files generated
+
+=== ERROR COUNTS ===
+Missing packages:    53
+Cannot find symbol:  46
+
+=== MISSING PACKAGES (unique) ===
+package com.yas.commonlibrary.exception does not exist
+package com.yas.commonlibrary.model does not exist
+package com.yas.customer.viewmodel does not exist
+package com.yas.customer.viewmodel.address does not exist
+package com.yas.customer.viewmodel.customer does not exist
+package com.yas.customer.viewmodel.useraddress does not exist
+package io.github.resilience4j.circuitbreaker.annotation does not exist
+package io.github.resilience4j.retry.annotation does not exist
+package io.swagger.v3.oas.annotations.media does not exist
+package io.swagger.v3.oas.annotations.responses does not exist
+package jakarta.ws.rs.core does not exist
+package org.apache.commons.validator.routines does not exist
+package org.keycloak does not exist
+package org.keycloak.admin.client does not exist
+package org.keycloak.admin.client.resource does not exist
+package org.keycloak.representations.idm does not exist
+package org.springframework.boot.persistence.autoconfigure does not exist
+package org.springframework.security.oauth2.jwt does not exist
+
