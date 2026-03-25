@@ -13,7 +13,7 @@
 ## Common commands
 
 ```bash
-# Full experiment — all 12 services × 3 roles (admin, customer, none)
+# Full experiment — all 13 services × 3 roles (admin, customer, none)
 ./run-all.sh
 
 # Single role only

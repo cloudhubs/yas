@@ -71,7 +71,7 @@ cd evomaster-config/scripts
 ./run-all.sh
 ```
 
-This runs **12 services × 3 roles = 36 EvoMaster executions** and writes results to `generated-tests/blackbox/`.
+This runs **13 services × 3 roles = 39 EvoMaster executions** and writes results to `generated-tests/blackbox/`.
 
 ### Run a single service
 
@@ -137,6 +137,7 @@ ensure_customer_user_exists
 | `tax` | `/tax` | Tax classes and rates |
 | `promotion` | `/promotion` | Discount rules and coupons |
 | `search` | `/search` | Elasticsearch-based product search |
+| `sampledata` | `/sampledata` | Demo/sample data loading (small API surface) |
 
 ### Why we don't run EvoMaster for `/backoffice` and `/storefront`
 
@@ -159,13 +160,11 @@ Endpoints you care about map to services and full URLs on `api.yas.local` as fol
 | GET /storefront/cart/items | `cart` | `GET /cart/storefront/cart/items` | admin, customer |
 | POST /backoffice/products | `product` | `POST /product/backoffice/products` | admin |
 | POST /storefront/ratings | `rating` | `POST /rating/storefront/ratings` | admin, customer |
-| POST /storefront/sampledata | `sampledata` | `POST /sampledata/storefront/sampledata` | storefront (no auth or customer) — **not in default service list** |
+| POST /storefront/sampledata | `sampledata` | `POST /sampledata/storefront/sampledata` | `none`, `customer`, or `admin` / `admin_only` (depends on security config) |
 | DELETE /backoffice/ratings/{id} | `rating` | `DELETE /rating/backoffice/ratings/{id}` | admin |
 | DELETE /backoffice/warehouses/{id} | `inventory` | `DELETE /inventory/backoffice/warehouses/{id}` | admin |
 | PUT /backoffice/products/subtract-quantity | `product` | `PUT /product/backoffice/products/subtract-quantity` | admin |
 | PUT /backoffice/state-or-provinces/{id} | `location` | `PUT /location/backoffice/state-or-provinces/{id}` | admin |
-
-**Note:** `sampledata` is not in the default list of services in `run-all.sh`. The nginx gateway exposes `api.yas.local/sampledata/`. To run EvoMaster for it, add `sampledata` to the service map in `evomaster-blackbox.sh` and to the `SERVICES` array in `run-all.sh`, then run `./evomaster-blackbox.sh sampledata none` (or the role that matches the app’s security rules).
 
 ---
 

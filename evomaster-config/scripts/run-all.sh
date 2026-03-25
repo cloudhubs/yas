@@ -29,7 +29,7 @@ BLUE='\033[0;34m'
 NC='\033[0m'
 
 # Services to test (in order)
-SERVICES=(product media customer cart rating order payment location inventory tax promotion search)
+SERVICES=(product media customer cart rating order payment location inventory tax promotion search sampledata)
 
 # Roles to test — if a specific role is passed, use only that one; otherwise run all three
 if [ -n "$1" ]; then

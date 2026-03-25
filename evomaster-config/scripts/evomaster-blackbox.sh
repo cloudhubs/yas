@@ -13,10 +13,11 @@
 #
 # Available services:
 #   product, media, customer, cart, rating, order, payment,
-#   location, inventory, tax, promotion, search
+#   location, inventory, tax, promotion, search, sampledata
 #
 # Available roles:
 #   admin    — token with roles ADMIN + CUSTOMER
+#   admin_only — token with role ADMIN only
 #   customer — token with role CUSTOMER only
 #   none     — no authentication (permitAll endpoints)
 #
@@ -59,6 +60,17 @@ NC='\033[0m'
 # Load authentication configuration
 source "$SCRIPT_DIR/auth-config.sh"
 
+# Optional curl --resolve fallback when hostnames are not present in /etc/hosts.
+declare -a CURL_HOST_RESOLVE=()
+RESOLVE_IP="${EVOMASTER_HOST_RESOLVE:-}"
+if [ -z "$RESOLVE_IP" ] && ! getent hosts api.yas.local >/dev/null 2>&1; then
+    RESOLVE_IP="127.0.0.1"
+fi
+if [ -n "$RESOLVE_IP" ]; then
+    CURL_HOST_RESOLVE=(--resolve "api.yas.local:80:${RESOLVE_IP}" --resolve "identity:80:${RESOLVE_IP}")
+    echo -e "${YELLOW}Using curl --resolve for api.yas.local/identity -> ${RESOLVE_IP}${NC}"
+fi
+
 # =============================================================================
 # Service map: name -> context path on api.yas.local
 # =============================================================================
@@ -92,6 +104,7 @@ show_usage() {
     echo -e ""
     echo -e "${BLUE}Roles:${NC}"
     echo -e "  admin    — ADMIN + CUSTOMER (backoffice and storefront endpoints)"
+    echo -e "  admin_only — ADMIN only (no CUSTOMER)"
     echo -e "  customer — CUSTOMER only (storefront cart and customer endpoints)"
     echo -e "  none     — no authentication (public endpoints)"
     echo -e ""
@@ -121,7 +134,7 @@ if [ -z "${SERVICE_PATHS[$SERVICE_NAME]+_}" ]; then
     exit 1
 fi
 
-if [ "$USER_ROLE" != "admin" ] && [ "$USER_ROLE" != "customer" ] && [ "$USER_ROLE" != "none" ]; then
+if [ "$USER_ROLE" != "admin" ] && [ "$USER_ROLE" != "admin_only" ] && [ "$USER_ROLE" != "customer" ] && [ "$USER_ROLE" != "none" ]; then
     echo -e "${YELLOW}Warning: role '$USER_ROLE' is invalid. Using 'none'.${NC}"
     USER_ROLE="none"
 fi
@@ -165,7 +178,7 @@ LOG_FILE="$OUTPUT_DIR/evomaster.log"
 # =============================================================================
 
 echo -e "\n${YELLOW}Checking OpenAPI spec at ${SWAGGER_URL}...${NC}"
-HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$SWAGGER_URL")
+HTTP_STATUS=$(curl -s "${CURL_HOST_RESOLVE[@]}" -o /dev/null -w "%{http_code}" "$SWAGGER_URL")
 
 if [ "$HTTP_STATUS" = "200" ]; then
     echo -e "${GREEN}✓ OpenAPI spec available (HTTP 200)${NC}"
@@ -187,12 +200,17 @@ else
     if [ "$USER_ROLE" = "customer" ]; then
         echo -e "\n${YELLOW}Ensuring customer user exists...${NC}"
         ensure_customer_user_exists
+    elif [ "$USER_ROLE" = "admin_only" ]; then
+        echo -e "\n${YELLOW}Ensuring admin-only user exists...${NC}"
+        ensure_admin_only_user_exists
     fi
 
     echo -e "${YELLOW}Fetching OAuth2 token from Keycloak...${NC}"
 
     if [ "$USER_ROLE" = "admin" ]; then
         TOKEN=$(get_admin_token)
+    elif [ "$USER_ROLE" = "admin_only" ]; then
+        TOKEN=$(get_admin_only_token)
     else
         TOKEN=$(get_customer_token)
     fi

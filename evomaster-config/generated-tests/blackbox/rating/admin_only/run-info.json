@@ -1,0 +1,20 @@
+{
+  "service": "rating",
+  "role": "admin_only",
+  "timestamp": "20260325_004723",
+  "max_time_seconds": 60,
+  "rate_per_minute": 60,
+  "seed": "random",
+  "swagger_url": "http://api.yas.local/rating/v3/api-docs",
+  "api_url": "http://api.yas.local",
+  "keycloak_url": "http://identity",
+  "authenticated": true,
+  "evomaster_version": "4.0.0",
+  "evomaster_image": "webfuzzing/evomaster:v4.0.0",
+  "results": {
+    "covered_targets": "136",
+    "endpoints_2xx": "4 endpoints out of 7",
+    "tests_generated": "21",
+    "exit_code": 0
+  }
+}
