@@ -1,0 +1,12 @@
+{"service": "product", "role": "admin_only", "status": "failed", "elapsed_seconds": 0}
+{"service": "media", "role": "admin_only", "status": "failed", "elapsed_seconds": 0}
+{"service": "customer", "role": "admin_only", "status": "failed", "elapsed_seconds": 0}
+{"service": "cart", "role": "admin_only", "status": "failed", "elapsed_seconds": 0}
+{"service": "rating", "role": "admin_only", "status": "failed", "elapsed_seconds": 0}
+{"service": "order", "role": "admin_only", "status": "failed", "elapsed_seconds": 0}
+{"service": "payment", "role": "admin_only", "status": "failed", "elapsed_seconds": 3}
+{"service": "location", "role": "admin_only", "status": "failed", "elapsed_seconds": 0}
+{"service": "inventory", "role": "admin_only", "status": "failed", "elapsed_seconds": 0}
+{"service": "tax", "role": "admin_only", "status": "failed", "elapsed_seconds": 0}
+{"service": "promotion", "role": "admin_only", "status": "failed", "elapsed_seconds": 0}
+{"service": "search", "role": "admin_only", "status": "failed", "elapsed_seconds": 0}
