@@ -16,10 +16,12 @@
 #   location, inventory, tax, promotion, search, sampledata
 #
 # Available roles:
-#   admin    — token with roles ADMIN + CUSTOMER
+#   admin      — token with roles ADMIN + CUSTOMER
 #   admin_only — token with role ADMIN only
-#   customer — token with role CUSTOMER only
-#   none     — no authentication (permitAll endpoints)
+#   customer   — token with role CUSTOMER only
+#   super_admin — token with role SUPER-ADMIN only
+#   user       — token with role USER only
+#   none       — no authentication (permitAll endpoints)
 #
 # Environment variables:
 #   EVOMASTER_MAX_TIME   Max time in seconds (default: 60)
@@ -38,7 +40,7 @@ OUTPUT_BASE_DIR="$SCRIPT_DIR/../generated-tests/blackbox"
 
 # EvoMaster parameters (default version matches evomaster.log: * EvoMaster version: 4.0.0)
 EVOMASTER_VERSION="${EVOMASTER_VERSION:-4.0.0}"
-EVOMASTER_IMAGE="${EVOMASTER_IMAGE:-webfuzzing/evomaster:${EVOMASTER_VERSION}}"
+EVOMASTER_IMAGE="${EVOMASTER_IMAGE:-webfuzzing/evomaster:v${EVOMASTER_VERSION}}"
 MAX_TIME="${EVOMASTER_MAX_TIME:-60}"
 RATE_PER_MINUTE="${EVOMASTER_RATE:-60}"
 SEED="${EVOMASTER_SEED:-}"
@@ -103,10 +105,12 @@ show_usage() {
     done | sort
     echo -e ""
     echo -e "${BLUE}Roles:${NC}"
-    echo -e "  admin    — ADMIN + CUSTOMER (backoffice and storefront endpoints)"
-    echo -e "  admin_only — ADMIN only (no CUSTOMER)"
-    echo -e "  customer — CUSTOMER only (storefront cart and customer endpoints)"
-    echo -e "  none     — no authentication (public endpoints)"
+    echo -e "  admin       — ADMIN + CUSTOMER (backoffice and storefront endpoints)"
+    echo -e "  admin_only  — ADMIN only (no CUSTOMER)"
+    echo -e "  customer    — CUSTOMER only (storefront endpoints)"
+    echo -e "  super_admin — SUPER-ADMIN only"
+    echo -e "  user        — USER only"
+    echo -e "  none        — no authentication (public endpoints)"
     echo -e ""
     echo -e "${BLUE}Environment variables:${NC}"
     echo -e "  EVOMASTER_MAX_TIME   Max time in seconds (default: 60)"
@@ -134,7 +138,7 @@ if [ -z "${SERVICE_PATHS[$SERVICE_NAME]+_}" ]; then
     exit 1
 fi
 
-if [ "$USER_ROLE" != "admin" ] && [ "$USER_ROLE" != "admin_only" ] && [ "$USER_ROLE" != "customer" ] && [ "$USER_ROLE" != "none" ]; then
+if [ "$USER_ROLE" != "admin" ] && [ "$USER_ROLE" != "admin_only" ] && [ "$USER_ROLE" != "customer" ] && [ "$USER_ROLE" != "super_admin" ] && [ "$USER_ROLE" != "user" ] && [ "$USER_ROLE" != "none" ]; then
     echo -e "${YELLOW}Warning: role '$USER_ROLE' is invalid. Using 'none'.${NC}"
     USER_ROLE="none"
 fi
@@ -203,6 +207,12 @@ else
     elif [ "$USER_ROLE" = "admin_only" ]; then
         echo -e "\n${YELLOW}Ensuring admin-only user exists...${NC}"
         ensure_admin_only_user_exists
+    elif [ "$USER_ROLE" = "super_admin" ]; then
+        echo -e "\n${YELLOW}Ensuring super-admin user exists...${NC}"
+        ensure_super_admin_user_exists
+    elif [ "$USER_ROLE" = "user" ]; then
+        echo -e "\n${YELLOW}Ensuring user-role user exists...${NC}"
+        ensure_user_role_user_exists
     fi
 
     echo -e "${YELLOW}Fetching OAuth2 token from Keycloak...${NC}"
@@ -211,6 +221,10 @@ else
         TOKEN=$(get_admin_token)
     elif [ "$USER_ROLE" = "admin_only" ]; then
         TOKEN=$(get_admin_only_token)
+    elif [ "$USER_ROLE" = "super_admin" ]; then
+        TOKEN=$(get_super_admin_token)
+    elif [ "$USER_ROLE" = "user" ]; then
+        TOKEN=$(get_user_role_token)
     else
         TOKEN=$(get_customer_token)
     fi
