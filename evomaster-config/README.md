@@ -104,7 +104,15 @@ This runs **12 services × 3 roles = 36 EvoMaster executions** and writes result
 ./evomaster-blackbox.sh cart customer
 ./evomaster-blackbox.sh tax none
 ```
+### To facilite de analysis
 
+```bash
+# A Windows script to facilitate the analysis in a CSV
+./evomaster-analysis.ps1
+
+# A Windows script to facilitate the tests compilation (IN PROGRESS)
+./compile-run-evomaster-tests.ps1
+```
 ---
 
 ## Authentication roles
