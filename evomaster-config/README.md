@@ -107,8 +107,11 @@ This runs **12 services × 3 roles = 36 EvoMaster executions** and writes result
 ### To facilite de analysis
 
 ```bash
-# A Windows script to facilitate the analysis in a CSV
-./evomaster-analysis.ps1
+# Generate the analysis CSV on Linux
+./evomaster-analysis.sh linux
+
+# Or choose the Windows-compatible mode
+./evomaster-analysis.sh windows
 
 # A Windows script to facilitate the tests compilation (IN PROGRESS)
 ./compile-run-evomaster-tests.ps1

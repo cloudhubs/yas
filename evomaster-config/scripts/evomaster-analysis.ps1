@@ -102,7 +102,7 @@ foreach ($file in $javaFiles) {
     $className = Get-ClassName -Content $content
     $fileType = Get-FileType -FileName $file.Name
 
-    $relativePath = $file.FullName.Substring($RootDir.Length).TrimStart('\')
+    $relativePath = $file.FullName.Substring($RootDir.Length).TrimStart('\', '/')
     $segments = $relativePath -split '[\\/]'
     $service = if ($segments.Length -ge 1) { $segments[0] } else { "" }
     $profile = if ($segments.Length -ge 2) { $segments[1] } else { "" }

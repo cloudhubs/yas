@@ -8,6 +8,7 @@
 |---|---|
 | `run-all.sh` | Run EvoMaster for all services and all roles |
 | `evomaster-blackbox.sh` | Run EvoMaster for a single service and role |
+| `evomaster-analysis.sh` | Generate the analysis CSV on Linux or call the Windows mode |
 | `auth-config.sh` | Keycloak credentials and token helpers (sourced, not run directly) |
 
 ## Common commands
@@ -25,6 +26,10 @@
 ./evomaster-blackbox.sh product admin
 ./evomaster-blackbox.sh cart customer
 ./evomaster-blackbox.sh tax none
+
+# Analysis CSV
+./evomaster-analysis.sh linux
+./evomaster-analysis.sh windows
 
 # Extended budget (1 hour per service)
 EVOMASTER_MAX_TIME=3600 EVOMASTER_SEED=42 ./run-all.sh
