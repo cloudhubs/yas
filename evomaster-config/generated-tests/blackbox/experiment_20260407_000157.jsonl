@@ -1,0 +1,2 @@
+{"service": "product", "role": "admin_only", "status": "failed", "elapsed_seconds": 0}
+{"service": "media", "role": "admin_only", "status": "failed", "elapsed_seconds": 5}
