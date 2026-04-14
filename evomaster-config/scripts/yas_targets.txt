@@ -1,0 +1,10 @@
+GET:/cart/storefront/cart/items
+GET:/rating/backoffice/ratings/latest/{count}
+GET:/customer/storefront/customer/profile
+GET:/cart/storefront/cart/items
+POST:/product/backoffice/products
+POST:/rating/storefront/ratings
+POST:/sampledata/storefront/sampledata
+DELETE:/rating/backoffice/ratings/{id}
+DELETE:/inventory/backoffice/warehouses/{id}
+PUT:/location/backoffice/state-or-provinces/{id}
