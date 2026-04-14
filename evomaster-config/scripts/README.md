@@ -8,6 +8,7 @@
 |---|---|
 | `run-all.sh` | Run EvoMaster for all services and all roles |
 | `evomaster-blackbox.sh` | Run EvoMaster for a single service and role |
+| `evomaster-analysis.py` | Single entrypoint: index methods, compile by class, run by method, and generate one CSV |
 | `auth-config.sh` | Keycloak credentials and token helpers (sourced, not run directly) |
 
 ## Common commands
@@ -26,6 +27,19 @@
 ./evomaster-blackbox.sh cart customer
 ./evomaster-blackbox.sh tax none
 
+# Read the file "documentation_python_script" for documentation on each column of the CSV
+# (Less recommended) Execute ALL Tests Validation - Unified analysis pipeline - More time needed ~ 2 hours
+python3 ./evomaster-analysis.py
+py -3 .\evomaster-analysis.py
+
+# Filter by target endpoints listed in a text file - Less time needed ~ 15 minutes
+py -3 .\evomaster-analysis.py --targets-file .\yas_targets.txt
+
+# targets.txt format:
+# Target Endpoint
+# GET:/rating/backoffice/ratings/latest/{count}
+# GET:/customer/storefront/customer/profile
+
 # Extended budget (1 hour per service)
 EVOMASTER_MAX_TIME=3600 EVOMASTER_SEED=42 ./run-all.sh
 
@@ -38,3 +52,12 @@ EVOMASTER_IMAGE=webfuzzing/evomaster:4.0.0 EVOMASTER_VERSION=4.0.0 ./evomaster-b
 ```
 ../generated-tests/blackbox/<service>/<role>/
 ```
+
+## Outputs
+
+The unified script generates:
+
+- one CSV final report with one row per test method
+- class compilation logs under `../runtime-logs/classes/`
+- method execution logs under `../runtime-logs/methods/`
+- temporary Maven projects under `../tmp-test-runner/`
