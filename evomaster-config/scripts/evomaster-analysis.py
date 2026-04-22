@@ -27,6 +27,10 @@ METHOD_PATTERN = re.compile(
     r"(?P<body>.*?)^\s*\}"
 )
 CALL_COMMENT_PATTERN = re.compile(r"\(\d+\)\s+([A-Z]+):([^\r\n\s*]+)")
+CALL_COMMENT_ENTRY_PATTERN = re.compile(
+    r"^\s*\*\s*(?:(?P<index>\d+)\s*-\s*)?\((?P<status>\d+)\)\s+(?P<http>[A-Z]+):(?P<endpoint>[^\r\n*]+)$",
+    re.MULTILINE,
+)
 REQUEST_PATTERN = re.compile(
     r'\.(get|post|put|patch|delete)\(\s*baseUrlOfSut\s*\+\s*"([^"]+)"',
     re.IGNORECASE,
@@ -81,10 +85,17 @@ CSV_HEADERS = [
     "file",
     "class",
     "test_method",
+    "is_complex_method",
+    "call_index",
+    "call_expected_status_code",
     "endpoint",
     "http",
     "asserted_code",
+    "asserts_the_expected_HTTP_status_codes?",
     "assert_count",
+    "missing_url_parameter_values",
+    "missing_request_body",
+    "credentials_header",
     "file_type",
     "file_path",
     "imports_count",
@@ -132,10 +143,17 @@ class MethodInfo:
     file_name: str
     class_name: str
     method_name: str
+    is_complex_method: bool
+    call_index: int
+    call_expected_status_code: str
     endpoint: str
     http: str
     asserted_code: str
+    asserts_the_expected_http_status_codes: str
     assert_count: int
+    missing_url_parameter_values: str
+    missing_request_body: str
+    credentials_header: str
     file_type: str
     file_path: Path
     start_line: int
@@ -197,6 +215,27 @@ class RunMetrics:
     error_summary: str
     process: Optional[ProcessMetrics]
     method_log_dir: Optional[Path]
+
+
+@dataclass
+class CommentCall:
+    index: int
+    expected_status_code: str
+    http: str
+    endpoint: str
+
+
+@dataclass
+class RequestBlock:
+    ordinal: int
+    http: str
+    endpoint: str
+    asserted_code: str
+    asserts_the_expected_http_status_codes: str
+    assert_count: int
+    missing_url_parameter_values: str
+    missing_request_body: str
+    credentials_header: str
 
 
 def parse_args() -> argparse.Namespace:
@@ -278,6 +317,414 @@ def get_assert_count(body: str) -> int:
     return len(ASSERT_PATTERN.findall(assertion_body))
 
 
+def parse_comment_calls(comment: str) -> list[CommentCall]:
+    calls: list[CommentCall] = []
+    for ordinal, match in enumerate(CALL_COMMENT_ENTRY_PATTERN.finditer(comment), start=1):
+        index = int(match.group("index")) if match.group("index") else ordinal
+        calls.append(
+            CommentCall(
+                index=index,
+                expected_status_code=match.group("status"),
+                http=normalize_http(match.group("http")),
+                endpoint=normalize_endpoint(match.group("endpoint").strip()),
+            )
+        )
+    return calls
+
+
+def extract_call_from_dot(body: str, dot_index: int) -> str:
+    if dot_index < 0 or dot_index >= len(body) or body[dot_index] != ".":
+        return ""
+
+    open_paren = body.find("(", dot_index)
+    if open_paren < 0:
+        return ""
+
+    depth = 0
+    in_string = False
+    escaping = False
+
+    for index in range(open_paren, len(body)):
+        char = body[index]
+
+        if in_string:
+            if escaping:
+                escaping = False
+            elif char == "\\":
+                escaping = True
+            elif char == '"':
+                in_string = False
+            continue
+
+        if char == '"':
+            in_string = True
+            continue
+
+        if char == "(":
+            depth += 1
+            continue
+
+        if char == ")":
+            depth -= 1
+            if depth == 0:
+                return body[dot_index : index + 1].strip()
+
+    return ""
+
+
+def get_first_http_call(body: str) -> tuple[str, int]:
+    request_match = re.search(r"\.(get|post|put|patch|delete)\(", body, re.IGNORECASE)
+    if not request_match:
+        return "", -1
+
+    dot_index = request_match.start()
+    return extract_call_from_dot(body, dot_index), dot_index
+
+
+def get_missing_url_parameter_values(body: str) -> str:
+    http_call, _ = get_first_http_call(body)
+    return http_call
+
+
+def get_missing_request_body(body: str) -> str:
+    _, http_index = get_first_http_call(body)
+    if http_index < 0:
+        return ""
+
+    prefix = body[:http_index]
+    body_calls: list[str] = []
+    seen: set[str] = set()
+
+    for match in re.finditer(r"\.body\(", prefix):
+        snippet = extract_call_from_dot(prefix, match.start())
+        if snippet and snippet not in seen:
+            seen.add(snippet)
+            body_calls.append(snippet)
+
+    return " | ".join(body_calls)
+
+
+def get_asserts_the_expected_http_status_codes(body: str) -> str:
+    snippets: list[str] = []
+    seen: set[str] = set()
+
+    for match in re.finditer(r"\.statusCode\(\d+\)", body):
+        status_call = extract_call_from_dot(body, match.start())
+        if not status_call:
+            continue
+
+        search_index = match.start() + len(status_call)
+        tail = body[search_index:]
+        assert_match = re.match(r"\s*\.assertThat\(\)", tail)
+        if not assert_match:
+            continue
+
+        assert_snippet = ".assertThat()"
+        combined = f"{status_call} {assert_snippet}"
+        if combined not in seen:
+            seen.add(combined)
+            snippets.append(combined)
+
+    return " | ".join(snippets)
+
+
+def get_credentials_header(body: str) -> str:
+    snippets: list[str] = []
+
+    for match in re.finditer(r"\.header\(", body):
+        snippet = extract_call_from_dot(body, match.start())
+        if not snippet:
+            continue
+        lowered = snippet.lower()
+        if "authorization" not in lowered and "bearer" not in lowered:
+            continue
+        snippets.append(snippet)
+
+    return " | ".join(snippets)
+
+
+def split_java_statements(body: str) -> list[str]:
+    statements: list[str] = []
+    start = 0
+    in_string = False
+    escaping = False
+
+    for index, char in enumerate(body):
+        if in_string:
+            if escaping:
+                escaping = False
+            elif char == "\\":
+                escaping = True
+            elif char == '"':
+                in_string = False
+            continue
+
+        if char == '"':
+            in_string = True
+            continue
+
+        if char == ";":
+            snippet = body[start : index + 1].strip()
+            if snippet:
+                statements.append(snippet)
+            start = index + 1
+
+    tail = body[start:].strip()
+    if tail:
+        statements.append(tail)
+
+    return statements
+
+
+def extract_endpoint_from_http_call(http_call: str) -> str:
+    string_parts = re.findall(r'"((?:[^"\\]|\\.)*)"', http_call)
+    if not string_parts:
+        return ""
+
+    combined = "".join(string_parts)
+    if not combined:
+        return ""
+
+    path = combined.split("?", 1)[0].strip()
+    return normalize_endpoint(path)
+
+
+def endpoint_matches_call(actual_endpoint: str, expected_endpoint: str) -> bool:
+    normalized_actual = normalize_endpoint(actual_endpoint)
+    normalized_expected = normalize_endpoint(expected_endpoint)
+    if not normalized_actual or not normalized_expected:
+        return False
+
+    actual_parts = [part for part in normalized_actual.strip("/").split("/") if part]
+    expected_parts = [part for part in normalized_expected.strip("/").split("/") if part]
+    if len(actual_parts) != len(expected_parts):
+        return False
+
+    for actual_part, expected_part in zip(actual_parts, expected_parts):
+        if expected_part.startswith("{") and expected_part.endswith("}"):
+            continue
+        if actual_part != expected_part:
+            return False
+
+    return True
+
+
+def parse_request_blocks(body: str) -> list[RequestBlock]:
+    blocks: list[RequestBlock] = []
+    for ordinal, statement in enumerate(split_java_statements(body), start=1):
+        if "given()" not in statement:
+            continue
+
+        http_call, _ = get_first_http_call(statement)
+        if not http_call:
+            continue
+
+        request_match = REQUEST_PATTERN.search(statement)
+        http = request_match.group(1).upper() if request_match else ""
+        blocks.append(
+            RequestBlock(
+                ordinal=ordinal,
+                http=http,
+                endpoint=extract_endpoint_from_http_call(http_call),
+                asserted_code=get_asserted_status_code(statement),
+                asserts_the_expected_http_status_codes=get_asserts_the_expected_http_status_codes(statement),
+                assert_count=get_assert_count(statement),
+                missing_url_parameter_values=http_call,
+                missing_request_body=get_missing_request_body(statement),
+                credentials_header=get_credentials_header(statement),
+            )
+        )
+
+    return blocks
+
+
+def join_values(values: list[str]) -> str:
+    return " | ".join([value for value in values if value])
+
+
+def get_all_missing_url_parameter_values(request_blocks: list[RequestBlock], body: str) -> str:
+    if request_blocks:
+        return join_values([block.missing_url_parameter_values for block in request_blocks])
+    return get_missing_url_parameter_values(body)
+
+
+def get_all_missing_request_body_values(request_blocks: list[RequestBlock], body: str) -> str:
+    if request_blocks:
+        return join_values([block.missing_request_body for block in request_blocks])
+    return get_missing_request_body(body)
+
+
+def get_all_credentials_headers(request_blocks: list[RequestBlock], body: str) -> str:
+    if request_blocks:
+        return join_values([block.credentials_header for block in request_blocks])
+    return get_credentials_header(body)
+
+
+def method_info_from_block(
+    *,
+    service: str,
+    profile: str,
+    file_name: str,
+    class_name: str,
+    method_name: str,
+    file_type: str,
+    file_path: Path,
+    start_line: int,
+    end_line: int,
+    is_complex_method: bool,
+    call_index: int,
+    call_expected_status_code: str,
+    block: RequestBlock,
+) -> MethodInfo:
+    return MethodInfo(
+        service=service,
+        profile=profile,
+        file_name=file_name,
+        class_name=class_name,
+        method_name=method_name,
+        is_complex_method=is_complex_method,
+        call_index=call_index,
+        call_expected_status_code=call_expected_status_code,
+        endpoint=block.endpoint,
+        http=block.http,
+        asserted_code=block.asserted_code,
+        asserts_the_expected_http_status_codes=block.asserts_the_expected_http_status_codes,
+        assert_count=block.assert_count,
+        missing_url_parameter_values=block.missing_url_parameter_values,
+        missing_request_body=block.missing_request_body,
+        credentials_header=block.credentials_header,
+        file_type=file_type,
+        file_path=file_path,
+        start_line=start_line,
+        end_line=end_line,
+    )
+
+
+def build_method_infos(
+    *,
+    service: str,
+    profile: str,
+    file_name: str,
+    class_name: str,
+    method_name: str,
+    file_type: str,
+    file_path: Path,
+    start_line: int,
+    end_line: int,
+    comment: str,
+    body: str,
+) -> list[MethodInfo]:
+    comment_calls = parse_comment_calls(comment)
+    request_blocks = parse_request_blocks(body)
+    is_complex_method = len(request_blocks) > 1 or len(comment_calls) > 1
+    aggregated_asserted_code = get_asserted_status_code(body)
+    aggregated_asserts = get_asserts_the_expected_http_status_codes(body)
+    aggregated_assert_count = get_assert_count(body)
+    aggregated_missing_url_parameter_values = get_all_missing_url_parameter_values(request_blocks, body)
+    aggregated_missing_request_body = get_all_missing_request_body_values(request_blocks, body)
+    aggregated_credentials_header = get_all_credentials_headers(request_blocks, body)
+
+    if len(comment_calls) <= 1:
+        http, endpoint = get_endpoint_info(comment, body)
+        return [
+            MethodInfo(
+                service=service,
+                profile=profile,
+                file_name=file_name,
+                class_name=class_name,
+                method_name=method_name,
+                is_complex_method=is_complex_method,
+                call_index=1,
+                call_expected_status_code=comment_calls[0].expected_status_code if comment_calls else "",
+                endpoint=endpoint,
+                http=http,
+                asserted_code=aggregated_asserted_code,
+                asserts_the_expected_http_status_codes=aggregated_asserts,
+                assert_count=aggregated_assert_count,
+                missing_url_parameter_values=aggregated_missing_url_parameter_values,
+                missing_request_body=aggregated_missing_request_body,
+                credentials_header=aggregated_credentials_header,
+                file_type=file_type,
+                file_path=file_path,
+                start_line=start_line,
+                end_line=end_line,
+            )
+        ]
+
+    if comment_calls:
+        return [
+            MethodInfo(
+                service=service,
+                profile=profile,
+                file_name=file_name,
+                class_name=class_name,
+                method_name=method_name,
+                is_complex_method=is_complex_method,
+                call_index=comment_call.index or fallback_index,
+                call_expected_status_code=comment_call.expected_status_code,
+                endpoint=comment_call.endpoint,
+                http=comment_call.http,
+                asserted_code=aggregated_asserted_code,
+                asserts_the_expected_http_status_codes=aggregated_asserts,
+                assert_count=aggregated_assert_count,
+                missing_url_parameter_values=aggregated_missing_url_parameter_values,
+                missing_request_body=aggregated_missing_request_body,
+                credentials_header=aggregated_credentials_header,
+                file_type=file_type,
+                file_path=file_path,
+                start_line=start_line,
+                end_line=end_line,
+            )
+            for fallback_index, comment_call in enumerate(comment_calls, start=1)
+        ]
+
+    if request_blocks:
+        return [
+            method_info_from_block(
+                service=service,
+                profile=profile,
+                file_name=file_name,
+                class_name=class_name,
+                method_name=method_name,
+                file_type=file_type,
+                file_path=file_path,
+                start_line=start_line,
+                end_line=end_line,
+                is_complex_method=is_complex_method,
+                call_index=index,
+                call_expected_status_code=block.asserted_code,
+                block=block,
+            )
+            for index, block in enumerate(request_blocks, start=1)
+        ]
+
+    http, endpoint = get_endpoint_info(comment, body)
+    return [
+        MethodInfo(
+            service=service,
+            profile=profile,
+            file_name=file_name,
+            class_name=class_name,
+            method_name=method_name,
+            is_complex_method=is_complex_method,
+            call_index=1,
+            call_expected_status_code="",
+            endpoint=endpoint,
+            http=http,
+            asserted_code=get_asserted_status_code(body),
+            asserts_the_expected_http_status_codes=get_asserts_the_expected_http_status_codes(body),
+            assert_count=get_assert_count(body),
+            missing_url_parameter_values=get_missing_url_parameter_values(body),
+            missing_request_body=get_missing_request_body(body),
+            credentials_header=get_credentials_header(body),
+            file_type=file_type,
+            file_path=file_path,
+            start_line=start_line,
+            end_line=end_line,
+        )
+    ]
+
+
 def count_newlines_until(content: str, position: int) -> int:
     return content.count("\n", 0, position) + 1
 
@@ -297,22 +744,19 @@ def parse_java_file(root_dir: Path, file_path: Path) -> ClassInfo:
     for match in METHOD_PATTERN.finditer(content):
         comment = match.group("comment") or ""
         body = match.group("body") or ""
-        http, endpoint = get_endpoint_info(comment, body)
-        methods.append(
-            MethodInfo(
+        methods.extend(
+            build_method_infos(
                 service=service,
                 profile=profile,
                 file_name=file_name,
                 class_name=class_name,
                 method_name=match.group("method"),
-                endpoint=endpoint,
-                http=http,
-                asserted_code=get_asserted_status_code(body),
-                assert_count=get_assert_count(body),
                 file_type=file_type,
                 file_path=file_path,
                 start_line=count_newlines_until(content, match.start()),
                 end_line=count_newlines_until(content, match.end()),
+                comment=comment,
+                body=body,
             )
         )
 
@@ -324,10 +768,17 @@ def parse_java_file(root_dir: Path, file_path: Path) -> ClassInfo:
                 file_name=file_name,
                 class_name=class_name,
                 method_name="",
+                is_complex_method=False,
+                call_index=1,
+                call_expected_status_code="",
                 endpoint="",
                 http="",
                 asserted_code="",
+                asserts_the_expected_http_status_codes="",
                 assert_count=0,
+                missing_url_parameter_values="",
+                missing_request_body="",
+                credentials_header="",
                 file_type=file_type,
                 file_path=file_path,
                 start_line=1,
@@ -1101,10 +1552,17 @@ def write_row(
             "file": method.file_name,
             "class": method.class_name,
             "test_method": method.method_name,
+            "is_complex_method": method.is_complex_method,
+            "call_index": method.call_index,
+            "call_expected_status_code": method.call_expected_status_code,
             "endpoint": method.endpoint,
             "http": method.http,
             "asserted_code": method.asserted_code,
+            "asserts_the_expected_HTTP_status_codes?": method.asserts_the_expected_http_status_codes,
             "assert_count": method.assert_count,
+            "missing_url_parameter_values": method.missing_url_parameter_values,
+            "missing_request_body": method.missing_request_body,
+            "credentials_header": method.credentials_header,
             "file_type": method.file_type,
             "file_path": str(method.file_path.resolve()),
             "imports_count": len(class_info.imports),
