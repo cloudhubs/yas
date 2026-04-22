@@ -1,0 +1,13 @@
+GET:/api/v1/contactservice/contacts
+GET:/api/v1/adminbasicservice/adminbasic/prices
+GET:/api/v1/cancelservice/cancel/{orderId}/{loginId}
+POST:/api/v1/inside_pay_service/inside_payment/account
+POST:/api/v1/adminbasicservice/adminbasic/prices
+POST:/api/v1/preserveservice/preserve
+DELETE:/api/v1/contactservice/contacts/{contactsId}
+DELETE:/api/v1/adminbasicservice/adminbasic/stations/{id}
+DELETE:/api/v1/adminorderservice/adminorder/{orderId}/{trainNumber}
+PUT:/api/v1/orderservice/order
+PUT:/api/v1/adminuserservice/users
+PUT:/api/v1/adminorderservice/adminorder
+PATCH:/api/v1/assuranceservice/assurances/{assuranceId}/{orderId}/{typeIndex}
