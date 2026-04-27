@@ -256,7 +256,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--timeout-sec", type=int, default=300)
     parser.add_argument("--maven-command", default="mvn")
     parser.add_argument("--java-release", default="21")
-    parser.add_argument("--evomaster-dependency-version", default="5.0.2")
+    parser.add_argument("--evomaster-dependency-version", default="5.1.0")
     parser.add_argument("--targets-file")
     return parser.parse_args()
 

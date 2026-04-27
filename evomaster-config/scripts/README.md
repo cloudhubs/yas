@@ -10,6 +10,7 @@
 | `evomaster-blackbox.sh` | Run EvoMaster for a single service and role |
 | `evomaster-analysis.py` | Single entrypoint: index methods, compile by class, run by method, and generate one CSV |
 | `auth-config.sh` | Keycloak credentials and token helpers (sourced, not run directly) |
+| `update-generated-test-tokens.sh` | Refresh expired bearer tokens inside already generated Java tests |
 
 ## Common commands
 
@@ -27,13 +28,25 @@
 ./evomaster-blackbox.sh cart customer
 ./evomaster-blackbox.sh tax none
 
+# Refresh hardcoded bearer tokens in existing generated tests
+./update-generated-test-tokens.sh
+
+# Preview only one role without editing files
+./update-generated-test-tokens.sh --role customer --dry-run
+
 # Read the file "documentation_python_script" for documentation on each column of the CSV
 # (Less recommended) Execute ALL Tests Validation - Unified analysis pipeline - More time needed ~ 2 hours
 python3 ./evomaster-analysis.py
-py -3 .\evomaster-analysis.py
 
-# Filter by target endpoints listed in a text file - Less time needed ~ 15 minutes
+# Linux VM / WSL: filter by target endpoints listed in a text file
+python3 ./evomaster-analysis.py --targets-file ./yas_targets.txt
+
+# Windows PowerShell / CMD
+py -3 .\evomaster-analysis.py
 py -3 .\evomaster-analysis.py --targets-file .\yas_targets.txt
+
+# If the tests were generated with EvoMaster 5.1.0, keep the analysis dependencies aligned
+python3 ./evomaster-analysis.py --evomaster-dependency-version 5.1.0 --targets-file ./yas_targets.txt
 
 # targets.txt format:
 # Target Endpoint
