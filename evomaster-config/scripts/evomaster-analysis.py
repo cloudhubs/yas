@@ -869,6 +869,31 @@ def services_from_targets(targets: set[tuple[str, str]]) -> set[str]:
     return services
 
 
+def resolve_allowed_services(root_dir: Path, targets: set[tuple[str, str]]) -> Optional[set[str]]:
+    """
+    YAS stores generated tests under root/<service>/<profile>/..., so the first
+    path segment of the endpoint is a good pre-filter for services.
+
+    Other projects, such as Train Ticket, can expose endpoints like /api/v1/...
+    while the generated-test directories use unrelated service names
+    (eg. ts-admin-basic-service). In those layouts, pre-filtering by the first
+    endpoint segment would incorrectly eliminate every class before we even match
+    methods.
+
+    To keep the YAS optimization without breaking other layouts, only apply the
+    service pre-filter when the inferred names actually exist as directories
+    under the chosen root_dir.
+    """
+    inferred_services = services_from_targets(targets)
+    if not inferred_services:
+        return None
+
+    existing_services = {
+        service for service in inferred_services if (root_dir / service).exists()
+    }
+    return existing_services or None
+
+
 def method_matches_targets(method: MethodInfo, targets: set[tuple[str, str]]) -> bool:
     method_http = normalize_http(method.http)
     if not method_http:
@@ -1774,7 +1799,7 @@ def main() -> int:
 
     if targets_file:
         targets = load_targets_file(targets_file)
-        allowed_services = services_from_targets(targets)
+        allowed_services = resolve_allowed_services(root_dir, targets)
 
     classes = collect_classes(root_dir, allowed_services=allowed_services)
     if targets_file:
