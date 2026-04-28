@@ -13,6 +13,7 @@ import stat
 import subprocess
 import textwrap
 import time
+import xml.etree.ElementTree as ET
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Optional
@@ -215,6 +216,14 @@ class RunMetrics:
     error_summary: str
     process: Optional[ProcessMetrics]
     method_log_dir: Optional[Path]
+
+
+@dataclass
+class SurefireMethodResult:
+    run_detected: bool
+    runtime_error_count: Optional[int]
+    error_types: set[str]
+    error_summary: str
 
 
 @dataclass
@@ -1302,6 +1311,94 @@ def first_matching_line(combined_log: str, patterns: tuple[str, ...]) -> str:
     return ""
 
 
+def iter_surefire_report_dirs(work_dir: Path, preferred_dir: Path) -> list[Path]:
+    candidates = [preferred_dir, work_dir / "target" / "surefire-reports"]
+    seen: set[Path] = set()
+    resolved: list[Path] = []
+
+    for candidate in candidates:
+        try:
+            normalized = candidate.resolve()
+        except OSError:
+            normalized = candidate
+        if normalized in seen or not candidate.exists() or not candidate.is_dir():
+            continue
+        seen.add(normalized)
+        resolved.append(candidate)
+
+    return resolved
+
+
+def testcase_matches_class(testcase_classname: str, class_name: str) -> bool:
+    return testcase_classname == class_name or testcase_classname.endswith(f".{class_name}")
+
+
+def summarize_surefire_reports(
+    report_dirs: list[Path],
+    class_name: str,
+    method_name: str,
+) -> SurefireMethodResult:
+    for report_dir in report_dirs:
+        for xml_path in sorted(report_dir.glob("TEST-*.xml")):
+            try:
+                root = ET.parse(xml_path).getroot()
+            except ET.ParseError:
+                continue
+
+            matched_testcase: Optional[ET.Element] = None
+            for testcase in root.findall(".//testcase"):
+                testcase_name = testcase.attrib.get("name", "")
+                testcase_classname = testcase.attrib.get("classname", "")
+                if testcase_name != method_name:
+                    continue
+                if class_name and not testcase_matches_class(testcase_classname, class_name):
+                    continue
+                matched_testcase = testcase
+                break
+
+            if matched_testcase is None:
+                continue
+
+            error_types: set[str] = set()
+            runtime_error_count = 0
+            error_summary = ""
+
+            for failure in matched_testcase.findall("failure"):
+                runtime_error_count += 1
+                error_types.add("test_failure")
+                failure_type = failure.attrib.get("type", "").strip()
+                if failure_type:
+                    error_types.add(failure_type)
+                if not error_summary:
+                    error_summary = failure.attrib.get("message", "").strip()
+
+            for error in matched_testcase.findall("error"):
+                runtime_error_count += 1
+                error_types.add("test_error")
+                error_type = error.attrib.get("type", "").strip()
+                if error_type:
+                    error_types.add(error_type)
+                if not error_summary:
+                    error_summary = error.attrib.get("message", "").strip()
+
+            if matched_testcase.find("skipped") is not None and runtime_error_count == 0:
+                error_summary = error_summary or "Test was skipped"
+
+            return SurefireMethodResult(
+                run_detected=True,
+                runtime_error_count=runtime_error_count,
+                error_types=error_types,
+                error_summary=error_summary,
+            )
+
+    return SurefireMethodResult(
+        run_detected=False,
+        runtime_error_count=None,
+        error_types=set(),
+        error_summary="",
+    )
+
+
 def summarize_compile(class_info: ClassInfo, process: ProcessMetrics, class_log_dir: Path) -> CompileMetrics:
     diagnostics = parse_compile_diagnostics(process.combined_log)
     error_types: set[str] = set()
@@ -1400,9 +1497,21 @@ def summarize_compile(class_info: ClassInfo, process: ProcessMetrics, class_log_
     )
 
 
-def summarize_run(process: ProcessMetrics, method_log_dir: Path, surefire_dir: Path) -> RunMetrics:
+def summarize_run(
+    process: ProcessMetrics,
+    method_log_dir: Path,
+    surefire_dir: Path,
+    work_dir: Path,
+    class_name: str,
+    method_name: str,
+) -> RunMetrics:
     summary_matches = list(TEST_SUMMARY_PATTERN.finditer(process.combined_log))
-    run_detected = bool(summary_matches) or surefire_dir.exists()
+    surefire_result = summarize_surefire_reports(
+        iter_surefire_report_dirs(work_dir, surefire_dir),
+        class_name,
+        method_name,
+    )
+    run_detected = bool(summary_matches) or surefire_dir.exists() or surefire_result.run_detected
     runtime_error_count: Optional[int] = None
     error_types: set[str] = set()
     error_summary = ""
@@ -1418,6 +1527,10 @@ def summarize_run(process: ProcessMetrics, method_log_dir: Path, surefire_dir: P
             error_types.add("test_error")
         if runtime_error_count:
             error_summary = summary.group(0)
+    elif surefire_result.run_detected:
+        runtime_error_count = surefire_result.runtime_error_count
+        error_types.update(surefire_result.error_types)
+        error_summary = surefire_result.error_summary
 
     exception_types = {
         item
@@ -1441,6 +1554,11 @@ def summarize_run(process: ProcessMetrics, method_log_dir: Path, surefire_dir: P
             process.combined_log,
             ("tests run:", "exception", "[error]", "timeout"),
         )
+    if not error_summary and surefire_result.run_detected:
+        if runtime_error_count in (None, 0):
+            error_summary = "Test passed (detected via Surefire XML)"
+        else:
+            error_summary = surefire_result.error_summary
 
     runs = (
         process.exit_code == 0
@@ -1530,7 +1648,14 @@ def run_method(
         stderr_path=method_log_dir / "run_stderr.log",
         combined_path=method_log_dir / "run.log",
     )
-    return summarize_run(process, method_log_dir, surefire_dir)
+    return summarize_run(
+        process,
+        method_log_dir,
+        surefire_dir,
+        work_dir,
+        class_info.class_name,
+        method.method_name,
+    )
 
 
 def stringify_path(value: Optional[Path]) -> str:
