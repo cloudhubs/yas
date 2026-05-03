@@ -27,7 +27,7 @@
 #   EVOMASTER_MAX_TIME   Max time in seconds (default: 60)
 #   EVOMASTER_RATE       Requests per minute (default: 60)
 #   EVOMASTER_SEED       Seed for reproducibility (default: random)
-#   EVOMASTER_IMAGE      Docker image (default: webfuzzing/evomaster:5.1.0)
+#   EVOMASTER_IMAGE      Docker image (default: webfuzzing/evomaster:4.0.0)
 #   EVOMASTER_VERSION    Version string for run-info.json (default: 4.0.0; matches "* EvoMaster version:" in evomaster.log)
 #   YAS_API_URL          API base URL (default: http://api.yas.local)
 #   KEYCLOAK_URL         Keycloak URL (default: http://identity)
@@ -38,8 +38,8 @@ set -e
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 OUTPUT_BASE_DIR="$SCRIPT_DIR/../generated-tests/blackbox"
 
-# EvoMaster parameters (default version matches evomaster.log: \* EvoMaster version: 5.1.0)
-EVOMASTER_VERSION="${EVOMASTER_VERSION:-5.1.0}"
+# EvoMaster parameters (default version matches evomaster.log: * EvoMaster version: 4.0.0)
+EVOMASTER_VERSION="${EVOMASTER_VERSION:-4.0.0}"
 EVOMASTER_IMAGE="${EVOMASTER_IMAGE:-webfuzzing/evomaster:v${EVOMASTER_VERSION}}"
 MAX_TIME="${EVOMASTER_MAX_TIME:-60}"
 RATE_PER_MINUTE="${EVOMASTER_RATE:-60}"
@@ -116,7 +116,7 @@ show_usage() {
     echo -e "  EVOMASTER_MAX_TIME   Max time in seconds (default: 60)"
     echo -e "  EVOMASTER_RATE       Requests per minute (default: 60)"
     echo -e "  EVOMASTER_SEED       Seed for reproducibility (default: random)"
-    echo -e "  EVOMASTER_IMAGE      Docker image (default: webfuzzing/evomaster:5.1.0)"
+    echo -e "  EVOMASTER_IMAGE      Docker image (default: webfuzzing/evomaster:4.0.0)"
     echo -e "  EVOMASTER_VERSION    Version in run-info.json (default: 4.0.0)"
     echo -e "  YAS_API_URL          API base URL (default: http://api.yas.local)"
     echo -e "  KEYCLOAK_URL         Keycloak URL (default: http://identity)"
