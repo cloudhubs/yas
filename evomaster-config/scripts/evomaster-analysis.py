@@ -998,6 +998,14 @@ def build_runner_pom(java_release: str, dependency_version: str) -> str:
             <plugins>
               <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+                <configuration>
+                  <release>{java_release}</release>
+                </configuration>
+              </plugin>
+              <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${{maven.surefire.version}}</version>
                 <configuration>
