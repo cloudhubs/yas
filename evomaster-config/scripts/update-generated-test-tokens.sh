@@ -31,7 +31,7 @@ Refresh expired Authorization bearer tokens in generated EvoMaster Java tests.
 Only the token value inside '.header("Authorization", "Bearer ...")' is changed.
 
 Options:
-  --role ROLE   Update only one role directory: admin, admin_only, customer, none
+  --role ROLE   Update only one role directory: admin, admin_only, customer, super_admin, user, none
   --dir PATH    Override the base directory to scan
   --dry-run     Show what would change without editing files
   --help        Show this help
@@ -84,6 +84,14 @@ get_role_token() {
             ensure_customer_user_exists >&2
             get_customer_token
             ;;
+        super_admin)
+            ensure_super_admin_user_exists >&2
+            get_super_admin_token
+            ;;
+        user)
+            ensure_user_role_user_exists >&2
+            get_user_role_token
+            ;;
         none)
             echo ""
             ;;
@@ -128,7 +136,7 @@ total_lines=0
 
 for role in "${roles[@]}"; do
     case "$role" in
-        admin|admin_only|customer|none)
+        admin|admin_only|customer|super_admin|user|none)
             ;;
         *)
             echo "Skipping unsupported role directory '$role'"
@@ -136,7 +144,8 @@ for role in "${roles[@]}"; do
             ;;
     esac
 
-    mapfile -t files < <(find "$TARGET_DIR" -type f -path "*/${role}/*.java" | sort)
+    # Limit matching to the role directory directly under each service directory.
+    mapfile -t files < <(find "$TARGET_DIR" -mindepth 3 -maxdepth 3 -type f -path "$TARGET_DIR/*/${role}/*.java" | sort)
     if [ "${#files[@]}" -eq 0 ]; then
         echo "No Java files found for role '$role' under $TARGET_DIR"
         continue
