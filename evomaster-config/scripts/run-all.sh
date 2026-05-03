@@ -7,11 +7,9 @@
 #   ./run-all.sh [role]
 #
 # Examples:
-#   ./run-all.sh             # runs admin_only + customer + none + super_admin + user for all services
-#   ./run-all.sh admin_only  # runs with admin_only role only
+#   ./run-all.sh             # runs admin + customer + none for all services
+#   ./run-all.sh admin       # runs with admin role only
 #   ./run-all.sh customer    # runs with customer role only
-#   ./run-all.sh super_admin # runs with super_admin role only
-#   ./run-all.sh user        # runs with user role only
 #   ./run-all.sh none        # runs without authentication only
 #
 # Environment variables (forwarded to evomaster-blackbox.sh):
@@ -31,13 +29,13 @@ BLUE='\033[0;34m'
 NC='\033[0m'
 
 # Services to test (in order)
-SERVICES=(product media customer cart rating order payment location inventory tax promotion search sampledata)
+SERVICES=(product media customer cart rating order payment location inventory tax promotion search)
 
 # Roles to test — if a specific role is passed, use only that one; otherwise run all three
 if [ -n "$1" ]; then
     ROLES=("$1")
 else
-    ROLES=(admin_only customer none super_admin user)
+    ROLES=(admin customer none)
 fi
 
 MAX_TIME="${EVOMASTER_MAX_TIME:-60}"
