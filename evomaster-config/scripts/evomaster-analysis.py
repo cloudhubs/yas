@@ -13,6 +13,7 @@ import stat
 import subprocess
 import textwrap
 import time
+import xml.etree.ElementTree as ET
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Optional
@@ -215,6 +216,14 @@ class RunMetrics:
     error_summary: str
     process: Optional[ProcessMetrics]
     method_log_dir: Optional[Path]
+
+
+@dataclass
+class SurefireSummary:
+    tests: int
+    failures: int
+    errors: int
+    skipped: int
 
 
 @dataclass
@@ -1302,6 +1311,39 @@ def first_matching_line(combined_log: str, patterns: tuple[str, ...]) -> str:
     return ""
 
 
+def parse_surefire_reports(report_dir: Path) -> Optional[SurefireSummary]:
+    if not report_dir.exists():
+        return None
+
+    tests = 0
+    failures = 0
+    errors = 0
+    skipped = 0
+    found = False
+
+    for xml_file in sorted(report_dir.glob("TEST-*.xml")):
+        try:
+            root = ET.fromstring(xml_file.read_text(encoding="utf-8", errors="replace"))
+        except (OSError, ET.ParseError):
+            continue
+
+        found = True
+        tests += int(root.attrib.get("tests", "0") or 0)
+        failures += int(root.attrib.get("failures", "0") or 0)
+        errors += int(root.attrib.get("errors", "0") or 0)
+        skipped += int(root.attrib.get("skipped", "0") or 0)
+
+    if not found:
+        return None
+
+    return SurefireSummary(
+        tests=tests,
+        failures=failures,
+        errors=errors,
+        skipped=skipped,
+    )
+
+
 def summarize_compile(class_info: ClassInfo, process: ProcessMetrics, class_log_dir: Path) -> CompileMetrics:
     diagnostics = parse_compile_diagnostics(process.combined_log)
     error_types: set[str] = set()
@@ -1400,9 +1442,12 @@ def summarize_compile(class_info: ClassInfo, process: ProcessMetrics, class_log_
     )
 
 
-def summarize_run(process: ProcessMetrics, method_log_dir: Path, surefire_dir: Path) -> RunMetrics:
+def summarize_run(process: ProcessMetrics, method_log_dir: Path, surefire_dir: Path, work_dir: Path) -> RunMetrics:
     summary_matches = list(TEST_SUMMARY_PATTERN.finditer(process.combined_log))
-    run_detected = bool(summary_matches) or surefire_dir.exists()
+    fallback_surefire_dir = work_dir / "target" / "surefire-reports"
+    report_dir = surefire_dir if surefire_dir.exists() else fallback_surefire_dir
+    surefire_summary = parse_surefire_reports(report_dir)
+    run_detected = bool(summary_matches) or surefire_summary is not None
     runtime_error_count: Optional[int] = None
     error_types: set[str] = set()
     error_summary = ""
@@ -1418,6 +1463,17 @@ def summarize_run(process: ProcessMetrics, method_log_dir: Path, surefire_dir: P
             error_types.add("test_error")
         if runtime_error_count:
             error_summary = summary.group(0)
+    elif surefire_summary is not None:
+        runtime_error_count = surefire_summary.failures + surefire_summary.errors
+        if surefire_summary.failures:
+            error_types.add("test_failure")
+        if surefire_summary.errors:
+            error_types.add("test_error")
+        if runtime_error_count:
+            error_summary = (
+                f"Tests run: {surefire_summary.tests}, Failures: {surefire_summary.failures}, "
+                f"Errors: {surefire_summary.errors}, Skipped: {surefire_summary.skipped}"
+            )
 
     exception_types = {
         item
@@ -1530,7 +1586,7 @@ def run_method(
         stderr_path=method_log_dir / "run_stderr.log",
         combined_path=method_log_dir / "run.log",
     )
-    return summarize_run(process, method_log_dir, surefire_dir)
+    return summarize_run(process, method_log_dir, surefire_dir, work_dir)
 
 
 def stringify_path(value: Optional[Path]) -> str:
