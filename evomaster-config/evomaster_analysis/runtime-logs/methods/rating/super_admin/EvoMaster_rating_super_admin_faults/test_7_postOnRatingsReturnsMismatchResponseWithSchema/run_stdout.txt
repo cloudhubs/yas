@@ -1,0 +1,87 @@
+Request method:	POST
+Request URI:	http://api.yas.local/rating/storefront/ratings
+Proxy:			<none>
+Request params:	<none>
+Query params:	<none>
+Form params:	<none>
+Path params:	<none>
+Headers:		Accept=*/*
+				Authorization=Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJLcTh2dHJEazBLOGpLX1c5NWJreTFKaTN5RzRSMy1oUmc1dzY3NDVkZ3RRIn0.eyJleHAiOjE3Nzg0MTcwNjUsImlhdCI6MTc3ODQxNjc2NSwianRpIjoiMzM4NTllNmYtMmY4Ny00ZmZiLTk4MzQtOTk3NGJhNTRlMTI2IiwiaXNzIjoiaHR0cDovL2lkZW50aXR5L3JlYWxtcy9ZYXMiLCJzdWIiOiI4OGE3YzM0MS00YTMzLTQ2YTctODkyMS03M2U4YTI0MmE4NTIiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJiYWNrb2ZmaWNlLWJmZiIsInNpZCI6IjNhYTU2YzJhLTQ4YjEtNGVlZi1iNzBhLTRlZTQ2MDVlMTkwNyIsInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJTVVBFUi1BRE1JTiJdfSwic2NvcGUiOiJlbWFpbCBwcm9maWxlIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJzdXBlcl9hZG1pbiJ9.LkNHNeD1vMPVaktCHqxhSy8YEwzV5RsKYxCQrMbTBXeOkqinc38KHWbVzDZor6cWS9_rHxh_SpKAIOLispz-xZBxfht3v1lk9F5ybj_09ZfFt3CIEwjaUHNbk4wY0dgtp7AEdLb1hv90geCWHXUJheA0rp_WPM3Si5IyXMg1-EBm2UM1K610_Q8f7D_qxw7mQoqhL8dsXZjN2-nMeYOuXvMsVBbuVo_8W7xohUUs6mE4Cl-zao9ZBm-ucUOTnRWU2tQ9N6wrriG5_Tp7BgMb5dScEZkWKE1gNLqeeZ8B_FDPQL_2gRpp-EG4_1QlTrU2UnDYe1BxVw9TNd4kL8c-bw
+				Content-Type=application/json
+Cookies:		<none>
+Multiparts:		<none>
+Body:
+{
+    "content": "EMYr",
+    "star": 373
+}
+
+HTTP/1.1 401 
+Server: nginx/1.27.2
+Date: Sun, 10 May 2026 12:51:11 GMT
+Content-Length: 0
+Connection: keep-alive
+WWW-Authenticate: Bearer error="invalid_token", error_description="An error occurred while attempting to decode the Jwt: Jwt expired at 2026-05-10T12:44:25Z", error_uri="https://tools.ietf.org/html/rfc6750#section-3.1", resource_metadata="http://rating/.well-known/oauth-protected-resource"
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 0
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY
+[[1;31mERROR[m] [1;31mTests [0;1mrun: [0;1m1[m, [1;31mFailures: [0;1;31m1[m, Errors: 0, Skipped: 0, Time elapsed: 2.714 s[1;31m <<< FAILURE![m -- in [1mEvoMaster_rating_super_admin_faults[m
+[[1;31mERROR[m] EvoMaster_rating_super_admin_faults.test_7_postOnRatingsReturnsMismatchResponseWithSchema -- Time elapsed: 1.963 s <<< FAILURE!
+java.lang.AssertionError: 
+1 expectation failed.
+Expected status code <403> but was <401>.
+
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:73)
+	at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrapNoCoerce.callConstructor(ConstructorSite.java:108)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallConstructor(CallSiteArray.java:57)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:263)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:277)
+	at io.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:512)
+	at io.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure$validate$1.call(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:125)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:139)
+	at io.restassured.internal.ResponseSpecificationImpl.validateResponseIfRequired(ResponseSpecificationImpl.groovy:696)
+	at io.restassured.internal.ResponseSpecificationImpl.this$2$validateResponseIfRequired(ResponseSpecificationImpl.groovy)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.codehaus.groovy.runtime.callsite.PlainObjectMetaMethodSite.doInvoke(PlainObjectMetaMethodSite.java:43)
+	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSiteNoUnwrapNoCoerce.invoke(PogoMetaMethodSite.java:198)
+	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:62)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:49)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:171)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:185)
+	at io.restassured.internal.ResponseSpecificationImpl.statusCode(ResponseSpecificationImpl.groovy:135)
+	at io.restassured.specification.ResponseSpecification$statusCode$1.callCurrent(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallCurrent(CallSiteArray.java:49)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:171)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:185)
+	at io.restassured.internal.ResponseSpecificationImpl.statusCode(ResponseSpecificationImpl.groovy:143)
+	at io.restassured.internal.ValidatableResponseOptionsImpl.statusCode(ValidatableResponseOptionsImpl.java:89)
+	at EvoMaster_rating_super_admin_faults.test_7_postOnRatingsReturnsMismatchResponseWithSchema(EvoMaster_rating_super_admin_faults.java:250)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[[1;31mERROR[m] [1;31mFailures: [m
+[[1;31mERROR[m] [1;31m  EvoMaster_rating_super_admin_faults.test_7_postOnRatingsReturnsMismatchResponseWithSchema:250 1 expectation failed.
+Expected status code <403> but was <401>.
+[m
+[[1;31mERROR[m] [1;31mTests run: 1, Failures: 1, Errors: 0, Skipped: 0[m
+[[1;31mERROR[m] Failed to execute goal [32morg.apache.maven.plugins:maven-surefire-plugin:3.5.2:test[m [1m(default-cli)[m on project [36mgenerated-test-runner[m: [1;31mThere are test failures.[m
+[[1;31mERROR[m] [1;31m[m
+[[1;31mERROR[m] [1;31mSee /home/azureuser/yas/evomaster-config/tmp-test-runner/rating/super_admin/0b1f17f5a367/target/surefire-reports for the individual test results.[m
+[[1;31mERROR[m] [1;31mSee dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.[m
+[[1;31mERROR[m] -> [1m[Help 1][m
+[[1;31mERROR[m] 
+[[1;31mERROR[m] To see the full stack trace of the errors, re-run Maven with the [1m-e[m switch.
+[[1;31mERROR[m] Re-run Maven using the [1m-X[m switch to enable full debug logging.
+[[1;31mERROR[m] 
+[[1;31mERROR[m] For more information about the errors and possible solutions, please read the following articles:
+[[1;31mERROR[m] [1m[Help 1][m http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
