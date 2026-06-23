@@ -149,7 +149,7 @@ Write `$ARGUMENTS.output-path/setup-auth.sh`:
 #!/usr/bin/env bash
 # setup-auth.sh — Creates test users in Keycloak for each role found in the flow matrix
 # Usage: ./setup-auth.sh <keycloak-base-url> <realm>
-# Example: ./setup-auth.sh http://localhost:80 yas
+# Example: ./setup-auth.sh http://localhost:80 <realm-name>
 
 set -euo pipefail
 
@@ -179,13 +179,13 @@ create_user() {
     -H "Authorization: Bearer ${ADMIN_TOKEN}")
   
   if echo "$EXISTING" | python3 -c "import sys,json; d=json.load(sys.stdin); exit(0 if len(d)==0 else 1)" 2>/dev/null; then
-    USER_ID=$(curl -s -X POST \
+    # Create user (response body is empty; ID comes from the re-fetch below)
+    curl -s -X POST \
       "${KEYCLOAK_URL}/admin/realms/${REALM}/users" \
       -H "Authorization: Bearer ${ADMIN_TOKEN}" \
       -H "Content-Type: application/json" \
-      -d "{\"username\":\"${USERNAME}\",\"email\":\"${USERNAME}@test.com\",\"enabled\":true,\"emailVerified\":true}" \
-      | python3 -c "import sys; loc=sys.stdin.read(); print(loc)" 2>/dev/null || true)
-    
+      -d "{\"username\":\"${USERNAME}\",\"email\":\"${USERNAME}@test.com\",\"enabled\":true,\"emailVerified\":true}"
+
     USER_ID=$(curl -s \
       "${KEYCLOAK_URL}/admin/realms/${REALM}/users?username=${USERNAME}" \
       -H "Authorization: Bearer ${ADMIN_TOKEN}" \
@@ -363,7 +363,7 @@ services:
       POSTGRES_PASSWORD: test
       POSTGRES_DB: postgres
     volumes:
-      - ./synthetic-data/output/postgres-init:/docker-entrypoint-initdb.d
+      - $ARGUMENTS.output-path/postgres-init:/docker-entrypoint-initdb.d
     ports:
       - "<original-port+100>:5432"
     healthcheck:
