@@ -154,7 +154,7 @@ Write `$ARGUMENTS.output-path/setup-auth.sh`:
 set -euo pipefail
 
 KEYCLOAK_URL="${1:-http://localhost:80}"
-REALM="${2:-yas}"
+REALM="${2:-<realm-discovered-in-phase-a>}"
 ADMIN_USER="<admin-username-from-compose>"
 ADMIN_PASS="<admin-password-from-compose>"
 TEST_PASSWORD="Test@1234"
@@ -220,6 +220,8 @@ create_user() {
 # One call per role found in the flow matrix
 # <ROLE_CALLS_PLACEHOLDER — replace with actual create_user calls per role>
 ```
+
+Replace `<realm-discovered-in-phase-a>` with the actual realm name extracted from the realm-export.json in Phase A.
 
 Replace `<ROLE_CALLS_PLACEHOLDER>` with one `create_user` call per distinct role found across the flow matrix:
 ```bash
@@ -373,6 +375,8 @@ services:
       retries: 10
 ```
 
-For systems with **per-service postgres** instances: generate one service entry per DB.
+Note: substitute `$ARGUMENTS.output-path` with the actual absolute path when writing the YAML file — Docker Compose does not expand SKILL.md argument syntax.
+
+For systems with **per-service postgres** instances: generate one service entry per DB, using port offset `<original-port + 100 + N>` where N is the 0-based index of the service in alphabetical order, to avoid port collisions between test containers.
 
 For systems with **MySQL**: use `image: mysql:8.0`, `MYSQL_ROOT_PASSWORD: test`, `MYSQL_DATABASE: <db>`, and healthcheck `mysqladmin ping -h localhost`.

@@ -24,7 +24,7 @@ fi
 
 echo "=== Step 2: Starting test environment ==="
 cd "$YAS_ROOT"
-docker compose -f docker-compose.yml -f synthetic-data/output/docker-compose.test.yml up -d
+docker compose -f docker-compose.yml -f "$OUTPUT_DIR/docker-compose.test.yml" up -d
 echo "Containers starting..."
 
 echo "=== Step 3: Waiting for Keycloak ==="
@@ -50,7 +50,7 @@ echo "=== Step 6: Tear down ==="
 read -p "Tear down test containers? [y/N] " -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-  docker compose -f docker-compose.yml -f synthetic-data/output/docker-compose.test.yml down
+  docker compose -f docker-compose.yml -f "$OUTPUT_DIR/docker-compose.test.yml" down
   echo "Containers stopped."
 fi
 

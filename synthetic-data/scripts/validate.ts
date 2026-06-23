@@ -73,9 +73,9 @@ check(fileContains(composePath, 'healthcheck:'), 'docker-compose.test.yml missin
 const subdirs = existsSync(outputPath)
   ? readdirSync(outputPath).filter(f => statSync(`${outputPath}/${f}`).isDirectory())
   : [];
-check(subdirs.length > 0, 'No seed directories found in output/');
-for (const svc of subdirs) {
-  if (svc === 'postgres-init') continue;
+const seedDirs = subdirs.filter(d => d !== 'postgres-init');
+check(seedDirs.length > 0, 'No seed directories found in output/ (excluding postgres-init)');
+for (const svc of seedDirs) {
   const sqlPath = `${outputPath}/${svc}/seed.sql`;
   check(existsSync(sqlPath), `${svc}/seed.sql missing`);
   if (existsSync(sqlPath)) {

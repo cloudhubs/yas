@@ -72,7 +72,10 @@ cd ..  # yas/ root
 docker compose -f docker-compose.yml -f synthetic-data/output/docker-compose.test.yml up -d
 
 # Create Keycloak test users (after Keycloak is healthy)
-./synthetic-data/output/setup-auth.sh http://localhost:80 yas
+./synthetic-data/output/setup-auth.sh http://localhost:80 <your-realm>
+
+# Run integration test (after containers are up and generator has run)
+bash synthetic-data/scripts/integration-test.sh http://localhost:80 <your-realm>
 ```
 
 ### Run EvoMaster with seeded collection
