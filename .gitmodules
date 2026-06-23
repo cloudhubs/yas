@@ -1,0 +1,3 @@
+[submodule "synthetic-data/openclaude"]
+	path = synthetic-data/openclaude
+	url = https://github.com/Gitlawb/openclaude.git
