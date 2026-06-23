@@ -1,6 +1,7 @@
 {
   "name": "synthetic-data",
   "version": "1.0.0",
+  "engines": { "node": ">=22.0.0" },
   "type": "module",
   "scripts": {
     "generate": "node --loader ts-node/esm scripts/generate.ts",
