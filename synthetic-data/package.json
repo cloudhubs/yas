@@ -1,0 +1,17 @@
+{
+  "name": "synthetic-data",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "generate": "node --loader ts-node/esm scripts/generate.ts",
+    "validate": "node --loader ts-node/esm scripts/validate.ts"
+  },
+  "dependencies": {
+    "openclaude": "file:./openclaude"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0",
+    "ts-node": "^10.9.2",
+    "@types/node": "^20.0.0"
+  }
+}

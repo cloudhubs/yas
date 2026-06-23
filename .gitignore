@@ -29,3 +29,7 @@ hs_err_pid*
 .settings*
 .vscode
 *.iml
+
+synthetic-data/output/
+synthetic-data/node_modules/
+synthetic-data/dist/
