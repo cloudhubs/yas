@@ -19,8 +19,16 @@ Create `$ARGUMENTS.output-path` if it does not exist.
 
 ## Idempotency Check
 
-If `$ARGUMENTS.output-path/flow-matrix.md` already exists, skip to **Phase D** and use it as input.
-This allows humans to edit the flow matrix and re-generate data without re-running codebase analysis.
+There are two resume points:
+
+- If `$ARGUMENTS.output-path/scenarios.md` already exists, skip to **Phase D**.
+  This allows humans to edit scenarios (personas, products, addresses) and re-generate
+  seed SQL without re-running codebase analysis or scenario invention.
+
+- If `$ARGUMENTS.output-path/flow-matrix.md` exists but `scenarios.md` does not,
+  skip Phases A–C.5 and resume at **Phase C.6** to invent scenarios from the existing matrix.
+
+If neither file exists, run all phases from A.
 
 ---
 
@@ -137,9 +145,74 @@ Rules:
 
 ---
 
+## Phase C.6 — Write Scenario Catalog
+
+Write `$ARGUMENTS.output-path/scenarios.md`.
+
+This file is the bridge between the abstract flow matrix and the concrete seed SQL.
+For each distinct `success` flow path in the flow matrix, invent **1–2 realistic scenarios**
+describing who the user is, what they are trying to do, and what specific data must exist.
+
+**Persona rules:**
+- Give each persona a realistic first and last name (match locale of the target system)
+- Assign a concrete address: street name, district name, city, postal code
+- Invent specific product names with SKUs, sizes, colors, prices — not generic "product_test_1"
+- Use plausible monetary values that make sense for the product type
+- Where a coupon applies, invent a realistic coupon code and discount amount
+
+**Seed requirements table:**
+After each scenario narrative, write a Markdown table with columns:
+`DB | Entity | Key values`
+
+List every entity that must exist in every service DB for the scenario to succeed,
+with concrete field values derived from the narrative. Use sequential integer IDs
+starting from 1 per entity type; track a cross-scenario counter so IDs don't collide.
+For Keycloak user IDs (foreign keys stored in business DBs), use the placeholder
+`<USERNAME>_UUID` — replaced after setup-auth.sh runs.
+
+**What to cover:**
+- One scenario per `success` row in the flow matrix is the minimum
+- Add a second scenario when: a different role is the actor, a coupon/promotion applies,
+  multiple items are involved, or a second user owns distinct data (e.g. for "not_found" contrast)
+- Skip `unauthorized`, `unauthenticated`, and `not_found` rows — they require no pre-existing data
+
+**Format:**
+
+```markdown
+# Scenario Catalog
+
+## Flow: <flow_name>
+
+### Scenario A — <one-line title>
+
+<2–5 sentence narrative. Name, goal, what they add, address, payment, result.>
+
+**Seed requirements:**
+
+| DB | Entity | Key values |
+|----|--------|------------|
+| product | brand | id=1, name='...', slug='...' |
+| product | product | id=1, name='...', sku='...', price=... |
+| ... | ... | ... |
+
+---
+
+### Scenario B — <one-line title>  ← optional second scenario
+
+...
+```
+
+**Idempotency:** if `$ARGUMENTS.output-path/scenarios.md` already exists when the skill
+runs, skip Phase C.6 (same as the flow-matrix idempotency rule).
+
+---
+
 ## Phase D — Generate Output Artifacts
 
-Read `$ARGUMENTS.output-path/flow-matrix.md` to get all flows.
+Read `$ARGUMENTS.output-path/scenarios.md` as the primary source of entity IDs and field
+values. Read `$ARGUMENTS.output-path/flow-matrix.md` for the complete flow list.
+All concrete values in seed SQL, Postman requests, and setup-auth.sh must match
+the names, prices, IDs, coupon codes, and addresses invented in scenarios.md.
 
 ### D1 — Keycloak User Setup (only if identity provider = keycloak)
 
