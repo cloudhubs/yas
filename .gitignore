@@ -30,6 +30,5 @@ hs_err_pid*
 .vscode
 *.iml
 
-synthetic-data/output/
 synthetic-data/node_modules/
 synthetic-data/dist/

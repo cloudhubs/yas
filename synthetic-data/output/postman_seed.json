@@ -1,0 +1,171 @@
+{
+  "info": {
+    "name": "YAS Synthetic Data — Auth Token Requests",
+    "description": "Get tokens for seeded test users. Run setup-auth.sh and seed-all.sql first.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {"key": "KC_BASE", "value": "http://identity.yas.local"},
+    {"key": "REALM", "value": "yas"},
+    {"key": "CLIENT_ID", "value": "storefront-bff"},
+    {"key": "CUSTOMER_PASS", "value": "customer123"},
+    {"key": "ADMIN_PASS", "value": "admin123"},
+    {"key": "CUSTOMER_TOKEN", "value": ""},
+    {"key": "ADMIN_TOKEN", "value": ""}
+  ],
+  "item": [
+    {
+      "name": "Group 2 — Cart Customer Token (aaaaaaaa-0001)",
+      "event": [{"listen":"test","script":{"exec":["pm.collectionVariables.set('CUSTOMER_TOKEN', pm.response.json().access_token);"],"type":"text/javascript"}}],
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/x-www-form-urlencoded"}],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {"key": "grant_type", "value": "password"},
+            {"key": "client_id", "value": "{{CLIENT_ID}}"},
+            {"key": "username", "value": "nguyen_customer"},
+            {"key": "password", "value": "{{CUSTOMER_PASS}}"}
+          ]
+        },
+        "url": "{{KC_BASE}}/realms/{{REALM}}/protocol/openid-connect/token"
+      }
+    },
+    {
+      "name": "Group 3 — Address Customer Token (bbbbbbbb-0001)",
+      "event": [{"listen":"test","script":{"exec":["pm.collectionVariables.set('CUSTOMER_TOKEN', pm.response.json().access_token);"],"type":"text/javascript"}}],
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/x-www-form-urlencoded"}],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {"key": "grant_type", "value": "password"},
+            {"key": "client_id", "value": "{{CLIENT_ID}}"},
+            {"key": "username", "value": "a_addr"},
+            {"key": "password", "value": "{{CUSTOMER_PASS}}"}
+          ]
+        },
+        "url": "{{KC_BASE}}/realms/{{REALM}}/protocol/openid-connect/token"
+      }
+    },
+    {
+      "name": "Group 4 — Order Customer Token (cccccccc-0001)",
+      "event": [{"listen":"test","script":{"exec":["pm.collectionVariables.set('CUSTOMER_TOKEN', pm.response.json().access_token);"],"type":"text/javascript"}}],
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/x-www-form-urlencoded"}],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {"key": "grant_type", "value": "password"},
+            {"key": "client_id", "value": "{{CLIENT_ID}}"},
+            {"key": "username", "value": "order_customer_1"},
+            {"key": "password", "value": "{{CUSTOMER_PASS}}"}
+          ]
+        },
+        "url": "{{KC_BASE}}/realms/{{REALM}}/protocol/openid-connect/token"
+      }
+    },
+    {
+      "name": "Group 5 — Rating Customer Token (dddddddd-0001)",
+      "event": [{"listen":"test","script":{"exec":["pm.collectionVariables.set('CUSTOMER_TOKEN', pm.response.json().access_token);"],"type":"text/javascript"}}],
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/x-www-form-urlencoded"}],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {"key": "grant_type", "value": "password"},
+            {"key": "client_id", "value": "{{CLIENT_ID}}"},
+            {"key": "username", "value": "rating_customer_1"},
+            {"key": "password", "value": "{{CUSTOMER_PASS}}"}
+          ]
+        },
+        "url": "{{KC_BASE}}/realms/{{REALM}}/protocol/openid-connect/token"
+      }
+    },
+    {
+      "name": "Group 6 — Admin Token (eeeeeeee-0001)",
+      "event": [{"listen":"test","script":{"exec":["pm.collectionVariables.set('ADMIN_TOKEN', pm.response.json().access_token);"],"type":"text/javascript"}}],
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/x-www-form-urlencoded"}],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {"key": "grant_type", "value": "password"},
+            {"key": "client_id", "value": "{{CLIENT_ID}}"},
+            {"key": "username", "value": "nguyen_admin"},
+            {"key": "password", "value": "{{ADMIN_PASS}}"}
+          ]
+        },
+        "url": "{{KC_BASE}}/realms/{{REALM}}/protocol/openid-connect/token"
+      }
+    },
+    {
+      "name": "Smoke — GET /product/storefront/products (PUBLIC)",
+      "request": {
+        "method": "GET",
+        "url": "http://api.yas.local/product/storefront/products"
+      }
+    },
+    {
+      "name": "Smoke — GET /cart/storefront/cart/items (CUSTOMER)",
+      "request": {
+        "method": "GET",
+        "header": [{"key": "Authorization", "value": "Bearer {{CUSTOMER_TOKEN}}"}],
+        "url": "http://api.yas.local/cart/storefront/cart/items"
+      }
+    },
+    {
+      "name": "Smoke — GET /customer/backoffice/customers (ADMIN)",
+      "request": {
+        "method": "GET",
+        "header": [{"key": "Authorization", "value": "Bearer {{ADMIN_TOKEN}}"}],
+        "url": "http://api.yas.local/customer/backoffice/customers"
+      }
+    },
+    {
+      "name": "Smoke — GET /order/backoffice/orders (ADMIN)",
+      "request": {
+        "method": "GET",
+        "header": [{"key": "Authorization", "value": "Bearer {{ADMIN_TOKEN}}"}],
+        "url": "http://api.yas.local/order/backoffice/orders"
+      }
+    },
+    {
+      "name": "Smoke — GET /rating/storefront/ratings/products/1 (PUBLIC)",
+      "request": {
+        "method": "GET",
+        "url": "http://api.yas.local/rating/storefront/ratings/products/1"
+      }
+    },
+    {
+      "name": "Smoke — GET /inventory/backoffice/stocks (ADMIN)",
+      "request": {
+        "method": "GET",
+        "header": [{"key": "Authorization", "value": "Bearer {{ADMIN_TOKEN}}"}],
+        "url": "http://api.yas.local/inventory/backoffice/stocks"
+      }
+    },
+    {
+      "name": "Smoke — POST /promotion/storefront/promotions/verify (AOAI10)",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {"mode": "raw", "raw": "{\"couponCode\": \"AOAI10\", \"productId\": 1}"},
+        "url": "http://api.yas.local/promotion/storefront/promotions/verify"
+      }
+    },
+    {
+      "name": "Smoke — GET /tax/backoffice/tax-classes (ADMIN)",
+      "request": {
+        "method": "GET",
+        "header": [{"key": "Authorization", "value": "Bearer {{ADMIN_TOKEN}}"}],
+        "url": "http://api.yas.local/tax/backoffice/tax-classes"
+      }
+    }
+  ]
+}

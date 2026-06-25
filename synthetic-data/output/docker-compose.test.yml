@@ -1,0 +1,63 @@
+# docker-compose.test.yml — YAS test environment override
+# Usage: docker compose -f docker-compose.yml -f docker-compose.test.yml up -d
+# Seeds DB and Keycloak after services start.
+
+services:
+
+  # ── DB seed job ──────────────────────────────────────────────
+  db-seed:
+    image: postgres:16-alpine
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./synthetic-data/output/seed-all.sql:/seed-all.sql:ro
+    environment:
+      PGPASSWORD: ${POSTGRES_PASSWORD:-admin}
+    command: >
+      sh -c "
+        echo '==> Waiting for postgres...' &&
+        until pg_isready -h postgres -U ${POSTGRES_USER:-admin}; do sleep 1; done &&
+        echo '==> Running seed-all.sql...' &&
+        psql -h postgres -U ${POSTGRES_USER:-admin} -f /seed-all.sql &&
+        echo '==> Seed complete.'
+      "
+    restart: "no"
+    networks:
+      - yas-network
+
+  # ── Keycloak user seed job ───────────────────────────────────
+  kc-seed:
+    image: curlimages/curl:8.6.0
+    depends_on:
+      identity:
+        condition: service_healthy
+    volumes:
+      - ./synthetic-data/output/setup-auth.sh:/setup-auth.sh:ro
+    entrypoint: /bin/sh
+    command: /setup-auth.sh http://identity:80 Yas admin admin
+    restart: "no"
+    networks:
+      - yas-network
+
+  # ── Override: ensure postgres has healthcheck ─────────────────
+  postgres:
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-admin}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # ── Override: ensure identity (Keycloak) has healthcheck ──────
+  # ubi9-micro image has no curl/wget; use bash TCP check instead
+  identity:
+    healthcheck:
+      test: ["CMD", "bash", "-c", "exec 3<>/dev/tcp/localhost/80"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 30s
+
+networks:
+  yas-network:
+    external: true
